@@ -1,6 +1,7 @@
-import Dec2Hex from './convert/ConvertDecimalToHex';
-import Hsl2Hex from './convert/ConvertHSLToHex';
+import ConvertDecimalToHex from './convert/ConvertDecimalToHex';
+import ConvertHSLToHex from './convert/ConvertHSLToHex';
 
 export default {
-    Dec2Hex, Hsl2Hex
+    ConvertDecimalToHex,
+    ConvertHSLToHex
 };

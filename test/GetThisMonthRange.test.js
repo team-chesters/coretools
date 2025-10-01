@@ -1,24 +1,28 @@
-import GetThisMonthRange from "../src/GetThisMonthRange";
+import GetThisMonthRange from '../src/date/GetThisMonthRange.js';
 
 describe('GetThisMonthRange function', () => {
-    test('Get range of the current month', () => {
+    it('should return this month range', () => {
         const result = GetThisMonthRange();
-        const startDate = result.start;
-        const endDate = result.end;
-        const today = new Date();
-
-        // Check if start date is the first day of the month
-        expect(startDate.getDate()).toBe(1);
-        expect(startDate.getMonth()).toBe(today.getMonth());
-        expect(startDate.getFullYear()).toBe(today.getFullYear());
         
-        // Check if end date is the last day of the month
-        const nextMonth = today.getMonth() + 1 === 12 ? 0 : today.getMonth() + 1;
-        const nextYear = nextMonth === 0 ? today.getFullYear() + 1 : today.getFullYear();
-        const expectedEndDate = new Date(nextYear, nextMonth, 0);
+        expect(result).toHaveProperty('start');
+        expect(result).toHaveProperty('end');
+        expect(result.start).toBeInstanceOf(Date);
+        expect(result.end).toBeInstanceOf(Date);
+    });
 
-        expect(endDate.getDate()).toBe(expectedEndDate.getDate());
-        expect(endDate.getMonth()).toBe(expectedEndDate.getMonth());
-        expect(endDate.getFullYear()).toBe(expectedEndDate.getFullYear());
+    it('should return valid date range', () => {
+        const result = GetThisMonthRange();
+        
+        expect(result.start.getTime()).toBeLessThanOrEqual(result.end.getTime());
+    });
+
+    it('should be within current month', () => {
+        const result = GetThisMonthRange();
+        const now = new Date();
+        
+        expect(result.start.getMonth()).toBe(now.getMonth());
+        expect(result.end.getMonth()).toBe(now.getMonth());
+        expect(result.start.getFullYear()).toBe(now.getFullYear());
+        expect(result.end.getFullYear()).toBe(now.getFullYear());
     });
 });

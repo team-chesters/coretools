@@ -1,27 +1,33 @@
-import isZero from '../src/isZero';
+import isZero from '../src/number/isZero.js';
 
 describe('isZero function', () => {
-    it('should return true for integer zero', () => {
-        expect(isZero(0)).toBe(true); // Integer zero
-        expect(isZero(-0)).toBe(true); // Negative zero
+    it('should return true for zero', () => {
+        expect(isZero(0)).toBe(true);
     });
 
-    it('should return false for non-zero integers', () => {
-        expect(isZero(1)).toBe(false); // Positive integer
-        expect(isZero(-1)).toBe(false); // Negative integer
-        expect(isZero(42)).toBe(false); // Another positive integer
+    it('should return false for non-zero numbers', () => {
+        expect(isZero(1)).toBe(false);
+        expect(isZero(-1)).toBe(false);
+        expect(isZero(0.1)).toBe(false);
+        expect(isZero(-0.1)).toBe(false);
     });
 
-    it('should return false for non-integer inputs', () => {
-        expect(isZero(0.5)).toBe(false); // Floating-point number
+    it('should return false for non-numbers', () => {
+        expect(isZero('0')).toBe(false);
+        expect(isZero('zero')).toBe(false);
+        expect(isZero(null)).toBe(false);
+        expect(isZero(undefined)).toBe(false);
+        expect(isZero({})).toBe(false);
+        expect(isZero([])).toBe(false);
     });
-    
-    it('should return null for empty inputs', () => {
-        expect(isZero('0')).toBe(null); // String '0'
-        expect(isZero(undefined)).toBe(null); // undefined
-        expect(isZero([])).toBe(null); // Empty array
-        expect(isZero('')).toBe(null); // Empty string
-        expect(isZero(null)).toBe(null); // null
-        expect(isZero({})).toBe(null); // Empty object
+
+    it('should handle very small numbers', () => {
+        expect(isZero(0.0000001)).toBe(false);
+        expect(isZero(-0.0000001)).toBe(false);
+    });
+
+    it('should handle Infinity', () => {
+        expect(isZero(Infinity)).toBe(false);
+        expect(isZero(-Infinity)).toBe(false);
     });
 });

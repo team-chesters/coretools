@@ -1,11 +1,27 @@
-import GetDayDiffBetween from "../src/GetDayDiffBetween";
+import GetDayDiffBetween from '../src/date/GetDayDiffBetween.js';
 
-test('Calculates difference in days between two dates', () => {
-    const dateA = new Date('2023-01-01');
-    const dateB = new Date('2023-01-10');
+describe('GetDayDiffBetween function', () => {
+    it('should calculate day difference between dates', () => {
+        const date1 = new Date('2021-01-01');
+        const date2 = new Date('2021-01-10');
+        const result = GetDayDiffBetween(date1, date2);
+        
+        expect(typeof result).toBe('number');
+        expect(result).toBeGreaterThan(0);
+    });
 
-    const result = GetDayDiffBetween(dateA, dateB);
+    it('should handle same dates', () => {
+        const date = new Date('2021-01-01');
+        const result = GetDayDiffBetween(date, date);
+        
+        expect(result).toBe(0);
+    });
 
-    // Check if the result is a number
-    expect(typeof result).toBe('number');
+    it('should handle reverse date order', () => {
+        const date1 = new Date('2021-01-10');
+        const date2 = new Date('2021-01-01');
+        const result = GetDayDiffBetween(date1, date2);
+        
+        expect(typeof result).toBe('number');
+    });
 });

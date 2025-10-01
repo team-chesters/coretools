@@ -1,18 +1,24 @@
-import GetStartOfWeek from "../src/GetStartOfWeek";
+import GetStartOfWeek from '../src/date/GetStartOfWeek.js';
 
 describe('GetStartOfWeek function', () => {
-    it('should return the start of the week for a given valid date', () => {
-        // Modify this based on your needs to test different scenarios
-        const inputDate = '20240103';
-        const result = GetStartOfWeek(inputDate);
-        const expected = new Date('2023-12-31T15:00:00.000Z');
-        expect(result).toEqual(expected);
+    it('should return start of week for given date', () => {
+        const date = new Date('2021-01-15'); // Friday
+        const result = GetStartOfWeek(date);
+        
+        expect(result).toBeInstanceOf(Date);
+        expect(result.getHours()).toBe(0);
+        expect(result.getMinutes()).toBe(0);
     });
 
-    it('should return a message if the parameter is empty', () => {
-        const emptyInput = '';
-        const result = GetStartOfWeek(emptyInput);
-        const expected = 'parameter is empty';
-        expect(result).toEqual(expected);
+    it('should handle different days of week', () => {
+        const sunday = new Date('2021-01-17'); // Sunday
+        const result = GetStartOfWeek(sunday);
+        
+        expect(result).toBeInstanceOf(Date);
+    });
+
+    it('should return Monday as start of week', () => {
+        const result = GetStartOfWeek(new Date());
+        expect(result).toBeInstanceOf(Date);
     });
 });

@@ -1,19 +1,32 @@
-import isKoreanChar from '../src/isKoreanChar';
+import isKoreanChar from '../src/string/isKoreanChar.js';
 
 describe('isKoreanChar function', () => {
-    it('returns true for a Korean character', () => {
-        expect(isKoreanChar('가')).toBe(true); // '가' is within the Korean Unicode range
+    it('should return true for Korean characters', () => {
+        expect(isKoreanChar('한')).toBe(true);
+        expect(isKoreanChar('글')).toBe(true);
+        expect(isKoreanChar('테')).toBe(true);
+        expect(isKoreanChar('스')).toBe(true);
+        expect(isKoreanChar('트')).toBe(true);
     });
 
-    it('returns false for a non-Korean character', () => {
-        expect(isKoreanChar('A')).toBe(false); // 'A' is not within the Korean Unicode range
+    it('should return false for non-Korean characters', () => {
+        expect(isKoreanChar('A')).toBe(false);
+        expect(isKoreanChar('1')).toBe(false);
+        expect(isKoreanChar('!')).toBe(false);
+        expect(isKoreanChar('中')).toBe(false);
+        expect(isKoreanChar('日')).toBe(false);
     });
 
-    it('returns false for a numeric character', () => {
-        expect(isKoreanChar('1')).toBe(false); // '1' is not a Korean character
+    it('should return false for empty string', () => {
+        expect(isKoreanChar('')).toBe(false);
     });
 
-    it('returns false for a special character', () => {
-        expect(isKoreanChar('@')).toBe(false); // '@' is not a Korean character
+    it('should handle mixed Korean and non-Korean', () => {
+        expect(isKoreanChar('한글ABC')).toBe(false);
+    });
+
+    it('should handle Korean vowels and consonants', () => {
+        expect(isKoreanChar('ㅏ')).toBe(true);
+        expect(isKoreanChar('ㄱ')).toBe(true);
     });
 });

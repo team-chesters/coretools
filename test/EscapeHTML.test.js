@@ -1,26 +1,17 @@
-import EscapeHTML from '../src/EscapeHTML';
+import EscapeHTML from '../src/string/EscapeHTML.js';
 
-describe('EscapeHTML', () => {
-    test('Escapes special characters in HTML', () => {
-        const stringWithHTML = '<div>Hello, world!</div>';
-        const escapedString = EscapeHTML(stringWithHTML);
-        const expectedOutput = '&lt;div&gt;Hello, world!&lt;/div&gt;';
-        expect(escapedString).toBe(expectedOutput);
+describe('EscapeHTML function', () => {
+    it('should escape HTML characters', () => {
+        expect(EscapeHTML('<div>')).toBe('&lt;div&gt;');
+        expect(EscapeHTML('&amp;')).toBe('&amp;amp;');
     });
 
-    test('Handles empty string', () => {
-        const emptyString = '';
-        expect(EscapeHTML(emptyString)).toBe('');
+    it('should handle empty string', () => {
+        expect(EscapeHTML('')).toBe('');
     });
 
-    test('Handles string without special characters', () => {
-        const stringWithoutSpecialChars = 'Hello, world!';
-        expect(EscapeHTML(stringWithoutSpecialChars)).toBe('Hello, world!');
-    });
-
-    test('Handles string with mixed special characters and text', () => {
-        const stringWithSpecialChars = 'Hello, & world < "quotes"';
-        const expectedOutput = 'Hello, &amp; world &lt; &quot;quotes&quot;';
-        expect(EscapeHTML(stringWithSpecialChars)).toBe(expectedOutput);
+    it('should handle special characters', () => {
+        expect(EscapeHTML('"quotes"')).toBe('&quot;quotes&quot;');
+        expect(EscapeHTML("'apostrophe'")).toBe('&#39;apostrophe&#39;');
     });
 });

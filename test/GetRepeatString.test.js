@@ -1,33 +1,24 @@
-import GetRepeatString from "../src/GetRepeatString"; 
+import GetRepeatString from '../src/string/GetRepeatString.js';
 
 describe('GetRepeatString function', () => {
-    test('Repeat the string without a separator', () => {
-        const result = GetRepeatString('hello', 3);
-
-        expect(result).toBe('hellohellohello');
+    it('should repeat string specified number of times', () => {
+        expect(GetRepeatString('Hello', 3)).toBe('HelloHelloHello');
+        expect(GetRepeatString('a', 5)).toBe('aaaaa');
     });
 
-    test('Repeat the string with a separator', () => {
-        const result = GetRepeatString('world', 5, '-');
-
-        expect(result).toBe('world-world-world-world-world');
+    it('should return empty string for zero count', () => {
+        expect(GetRepeatString('Hello', 0)).toBe('');
     });
 
-    test('Repeat the string with an empty separator', () => {
-        const result = GetRepeatString('test', 4, '');
-
-        expect(result).toBe('testtesttesttest');
+    it('should return original string for count of 1', () => {
+        expect(GetRepeatString('Hello', 1)).toBe('Hello');
     });
 
-    test('Repeat an empty string', () => {
-        const result = GetRepeatString('', 2, '*');
-
-        expect(result).toBe('*');
+    it('should handle empty string', () => {
+        expect(GetRepeatString('', 3)).toBe('');
     });
 
-    test('Repeat zero times', () => {
-        const result = GetRepeatString('hello', 0, ',');
-
-        expect(result).toBe('');
+    it('should handle single character', () => {
+        expect(GetRepeatString('*', 4)).toBe('****');
     });
 });

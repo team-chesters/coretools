@@ -1,45 +1,26 @@
-import Sleep from '../src/Sleep';
+import Sleep from '../src/async/Sleep.js';
 
 describe('Sleep function', () => {
-    it('should resolve after sleeping for the specified time', async () => {
-        const start = Date.now();
-        await Sleep(1000); // Sleep for 1000 milliseconds (1 second)
-        const end = Date.now();
-        const elapsed = end - start;
-
-        // Check if the elapsed time is roughly equal to the expected sleep time
-        expect(elapsed).toBeGreaterThanOrEqual(1000);
-        expect(elapsed).toBeLessThan(1100); // Allow for some small variance
+    it('should return a Promise', () => {
+        const sleepPromise = Sleep(100);
+        expect(sleepPromise).toBeInstanceOf(Promise);
     });
 
-    it('should resolve after a very short sleep', async () => {
+    it('should resolve after specified time', async () => {
         const start = Date.now();
-        await Sleep(10); // Sleep for 10 milliseconds
+        await Sleep(100);
         const end = Date.now();
-        const elapsed = end - start;
-
-        // Check if the elapsed time is roughly equal to the expected sleep time
-        expect(elapsed).toBeGreaterThanOrEqual(10);
-        expect(elapsed).toBeLessThan(20); // Allow for some small variance
+        
+        // Allow some tolerance for timing
+        expect(end - start).toBeGreaterThanOrEqual(95);
+        expect(end - start).toBeLessThan(150);
     });
 
-    it('should resolve immediately for zero milliseconds', async () => {
+    it('should handle zero delay', async () => {
         const start = Date.now();
-        await Sleep(0); // Sleep for 0 milliseconds
+        await Sleep(0);
         const end = Date.now();
-        const elapsed = end - start;
-
-        // Expect the elapsed time to be very close to zero
-        // expect(elapsed).toBeLessThan(10); // Allow for minimal variance
-    });
-
-    it('should handle negative sleep duration', async () => {
-        const start = Date.now();
-        await Sleep(-100); // Sleep for negative time (should resolve immediately)
-        const end = Date.now();
-        const elapsed = end - start;
-
-        // Expect the elapsed time to be very close to zero
-        // expect(elapsed).toBeLessThan(10); // Allow for minimal variance
+        
+        expect(end - start).toBeLessThan(50);
     });
 });

@@ -1,15 +1,27 @@
-import GetAge from "../src/GetAge";
+import GetAge from '../src/date/GetAge.js';
 
-describe('GetAge', () => {
-    test('Calculates age correctly for YYYYMMDD format', () => {
-        expect(GetAge(19901125)).toBe(33); // For instance, birthdate: November 25, 1990
-        expect(GetAge(20051231)).toBe(18); // For instance, birthdate: December 31, 2005
+describe('GetAge function', () => {
+    it('should calculate age correctly', () => {
+        const birthDate = new Date();
+        birthDate.setFullYear(birthDate.getFullYear() - 25);
+        
+        const age = GetAge(birthDate);
+        expect(age).toBe(25);
     });
 
-    test('Returns 0 for invalid or null input', () => {
-        expect(GetAge(null)).toBe(0);
-        expect(GetAge(undefined)).toBe(0);
-        expect(GetAge(123)).toBe(0);
-        expect(GetAge("invalid")).toBe(0);
+    it('should handle future birth date', () => {
+        const futureDate = new Date();
+        futureDate.setFullYear(futureDate.getFullYear() + 1);
+        
+        const age = GetAge(futureDate);
+        expect(age).toBe(0);
+    });
+
+    it('should handle birth date from this year', () => {
+        const thisYear = new Date();
+        thisYear.setMonth(thisYear.getMonth() - 6);
+        
+        const age = GetAge(thisYear);
+        expect(age).toBe(0);
     });
 });

@@ -1,23 +1,29 @@
-import GenerateRandomBytes from "../src/GenerateRandomBytes";
+import GenerateRandomBytes from '../src/random/GenerateRandomBytes.js';
 
 describe('GenerateRandomBytes function', () => {
-    test('should generate random bytes with default length', () => {
-        const result = GenerateRandomBytes();
-        expect(result.length).toBe(20);
+    it('should generate random bytes of specified length', () => {
+        const bytes = GenerateRandomBytes(16);
+        expect(bytes).toBeInstanceOf(Uint8Array);
+        expect(bytes.length).toBe(16);
     });
 
-    test('should generate random bytes with specified length', () => {
-        const result = GenerateRandomBytes(34);
-        expect(result.length).toBe(34);
+    it('should generate different random values', () => {
+        const bytes1 = GenerateRandomBytes(8);
+        const bytes2 = GenerateRandomBytes(8);
+        
+        expect(bytes1).not.toEqual(bytes2);
     });
 
-    test('should generate random bytes with default length', () => {
-        const result = GenerateRandomBytes();
-        expect(result.length).toBe(20); // Match the expected string length
+    it('should handle zero length', () => {
+        const bytes = GenerateRandomBytes(0);
+        expect(bytes.length).toBe(0);
     });
 
-    test('should generate random bytes with specified length', () => {
-        const result = GenerateRandomBytes(16);
-        expect(result.length).toBe(16); // Match the specified length
+    it('should generate values within valid range', () => {
+        const bytes = GenerateRandomBytes(100);
+        for (let i = 0; i < bytes.length; i++) {
+            expect(bytes[i]).toBeGreaterThanOrEqual(0);
+            expect(bytes[i]).toBeLessThanOrEqual(255);
+        }
     });
 });

@@ -1,0 +1,7 @@
+const VERSION = '1.0.2';
+const MAX_ARRAY_LENGTH = 4294967295;
+
+export {
+    VERSION,
+    MAX_ARRAY_LENGTH
+};

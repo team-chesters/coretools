@@ -1,10 +1,28 @@
-import GetDayEnd from "../src/GetDayEnd";
+import GetDayEnd from '../src/date/GetDayEnd.js';
 
-test('Returns the end of a given day', () => {
-    const someDate = new Date('2023-01-01'); // For instance, a specific date
+describe('GetDayEnd function', () => {
+    it('should return end of day for given date', () => {
+        const date = new Date('2021-01-15');
+        const result = GetDayEnd(date);
+        
+        expect(result).toBeInstanceOf(Date);
+        expect(result.getHours()).toBe(23);
+        expect(result.getMinutes()).toBe(59);
+        expect(result.getSeconds()).toBe(59);
+    });
 
-    const result = GetDayEnd(someDate);
+    it('should preserve date information', () => {
+        const date = new Date('2021-01-15');
+        const result = GetDayEnd(date);
+        
+        expect(result.getFullYear()).toBe(2021);
+        expect(result.getMonth()).toBe(0);
+        expect(result.getDate()).toBe(15);
+    });
 
-    // Check if the result is an instance of Date
-    expect(result instanceof Date).toBe(true);
+    it('should handle current date', () => {
+        const result = GetDayEnd(new Date());
+        expect(result).toBeInstanceOf(Date);
+        expect(result.getHours()).toBe(23);
+    });
 });

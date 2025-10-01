@@ -1,31 +1,27 @@
-import hhmm2min from "../src/hhmm2min";
+import hhmm2min from '../src/time/hhmm2min.js';
 
 describe('hhmm2min function', () => {
-    test("Valid input '12:34'", () => {
-        expect(hhmm2min("12:34")).toBe(754);
+    it('should convert HH:MM to minutes', () => {
+        expect(hhmm2min('01:00')).toBe(60);
+        expect(hhmm2min('02:30')).toBe(150);
+        expect(hhmm2min('00:45')).toBe(45);
     });
 
-    test("Valid input '1234'", () => {
-        expect(hhmm2min("1234")).toBe(754);
+    it('should handle 24-hour format', () => {
+        expect(hhmm2min('23:59')).toBe(1439);
+        expect(hhmm2min('12:00')).toBe(720);
     });
 
-    it('should return 0 for null input', () => {
-        expect(hhmm2min(null)).toBe(0);
+    it('should handle zero time', () => {
+        expect(hhmm2min('00:00')).toBe(0);
     });
 
-    it('should return 0 for undefined input', () => {
-        expect(hhmm2min(undefined)).toBe(0);
+    it('should handle midnight', () => {
+        expect(hhmm2min('24:00')).toBe(1440);
     });
 
-    it('should return 0 for empty string input', () => {
-        expect(hhmm2min('')).toBe(0);
-    });
-
-    it('should return 0 string with different separators', () => {
-        expect(hhmm2min('12-30')).toBe(0);
-    });
-
-    it('should return 0 with only hours', () => {
-        expect(hhmm2min('12')).toBe(0);
+    it('should handle single digit hours and minutes', () => {
+        expect(hhmm2min('9:5')).toBe(545);
+        expect(hhmm2min('1:1')).toBe(61);
     });
 });

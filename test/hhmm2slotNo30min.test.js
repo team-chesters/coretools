@@ -1,18 +1,24 @@
-import hhmm2slotNo30min from '../src/hhmm2slotNo30min';
+import hhmm2slotNo30min from '../src/time/hhmm2slotNo30min.js';
 
 describe('hhmm2slotNo30min function', () => {
-    it('should convert time string to slot number for 30-minute intervals', () => {
-        expect(hhmm2slotNo30min('09:00')).toBe(18); // 18 represents 9:00 AM (9*2 = 18)
-        expect(hhmm2slotNo30min('10:30')).toBe(21); // 21 represents 10:30 AM (10*2 + 1 = 21)
-        expect(hhmm2slotNo30min('12:00')).toBe(24); // 24 represents 12:00 PM (12*2 = 24)
-        expect(hhmm2slotNo30min('23:45')).toBe(47); // 47 represents 11:30 PM (23*2 + 1 = 47)
+    it('should convert HH:MM to 30-minute slot number', () => {
+        expect(hhmm2slotNo30min('00:00')).toBe(0);
+        expect(hhmm2slotNo30min('00:30')).toBe(1);
+        expect(hhmm2slotNo30min('01:00')).toBe(2);
+        expect(hhmm2slotNo30min('01:30')).toBe(3);
     });
 
-    it('should return -1 for null input', () => {
-        expect(hhmm2slotNo30min(null)).toBe(-1);
+    it('should handle hour boundaries', () => {
+        expect(hhmm2slotNo30min('02:00')).toBe(4);
+        expect(hhmm2slotNo30min('12:00')).toBe(24);
     });
 
-    it('should return -1 for empty string input', () => {
-        expect(hhmm2slotNo30min('')).toBe(-1);
+    it('should handle partial slots', () => {
+        expect(hhmm2slotNo30min('00:15')).toBe(0);
+        expect(hhmm2slotNo30min('00:45')).toBe(1);
+    });
+
+    it('should handle end of day', () => {
+        expect(hhmm2slotNo30min('23:59')).toBe(47);
     });
 });

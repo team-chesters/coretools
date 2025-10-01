@@ -1,10 +1,24 @@
-import GetEndOfWeek from "../src/GetEndOfWeek";
+import GetEndOfWeek from '../src/date/GetEndOfWeek.js';
 
-test('Returns the end of the week for a given date', () => {
-    const someDate = new Date('2023-01-01'); // For instance, a specific date
+describe('GetEndOfWeek function', () => {
+    it('should return end of week for given date', () => {
+        const date = new Date('2021-01-15'); // Friday
+        const result = GetEndOfWeek(date);
+        
+        expect(result).toBeInstanceOf(Date);
+        expect(result.getHours()).toBe(23);
+        expect(result.getMinutes()).toBe(59);
+    });
 
-    const result = GetEndOfWeek(someDate);
+    it('should handle different days of week', () => {
+        const monday = new Date('2021-01-11'); // Monday
+        const result = GetEndOfWeek(monday);
+        
+        expect(result).toBeInstanceOf(Date);
+    });
 
-    // Check if the result is an instance of Date
-    expect(result instanceof Date).toBe(true);
+    it('should return Sunday as end of week', () => {
+        const result = GetEndOfWeek(new Date());
+        expect(result).toBeInstanceOf(Date);
+    });
 });

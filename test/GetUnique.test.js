@@ -1,24 +1,33 @@
-import GetUnique from "../src/GetUnique";
+import GetUnique from '../src/array/GetUnique.js';
 
 describe('GetUnique function', () => {
-    it('should return an array with unique values', () => {
-        const inputArray = [1, 2, 2, 3, 4, 4, 5];
-        const result = GetUnique(inputArray);
-        const expected = [1, 2, 3, 4, 5];
-        expect(result).toEqual(expected);
+    it('should remove duplicate values from array', () => {
+        const input = [1, 2, 2, 3, 4, 4, 5];
+        const result = GetUnique(input);
+        expect(result).toEqual([1, 2, 3, 4, 5]);
     });
 
-    it('should return an empty array if the input array is empty', () => {
-        const emptyArray = [];
-        const result = GetUnique(emptyArray);
-        const expected = [];
-        expect(result).toEqual(expected);
+    it('should return empty array for empty input', () => {
+        const input = [];
+        const result = GetUnique(input);
+        expect(result).toEqual([]);
     });
 
-    it('should return the same array if all values are already unique', () => {
-        const uniqueArray = [10, 20, 30, 40];
-        const result = GetUnique(uniqueArray);
-        const expected = [10, 20, 30, 40];
-        expect(result).toEqual(expected);
+    it('should return same array if no duplicates', () => {
+        const input = [1, 2, 3, 4, 5];
+        const result = GetUnique(input);
+        expect(result).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it('should handle string arrays', () => {
+        const input = ['a', 'b', 'b', 'c', 'd', 'd'];
+        const result = GetUnique(input);
+        expect(result).toEqual(['a', 'b', 'c', 'd']);
+    });
+
+    it('should handle mixed type arrays', () => {
+        const input = [1, '1', 2, '2', 3];
+        const result = GetUnique(input);
+        expect(result).toEqual([1, '1', 2, '2', 3]);
     });
 });

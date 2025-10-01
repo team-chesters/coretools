@@ -1,43 +1,33 @@
-import isNumberPositive from '../src/isNumberPositive';
+import isNumberPositive from '../src/number/isNumberPositive.js';
 
 describe('isNumberPositive function', () => {
-    it('should return true for a positive number', () => {
-        const positiveNumber = 42;
-
-        const result = isNumberPositive(positiveNumber);
-
-        expect(result).toBe(true);
+    it('should return true for positive numbers', () => {
+        expect(isNumberPositive(1)).toBe(true);
+        expect(isNumberPositive(3.14)).toBe(true);
+        expect(isNumberPositive(0.1)).toBe(true);
     });
 
-    it('should return null for zero', () => {
-        const zero = 0;
-
-        const result = isNumberPositive(zero);
-
-        expect(result).toBe(null);
+    it('should return false for negative numbers', () => {
+        expect(isNumberPositive(-1)).toBe(false);
+        expect(isNumberPositive(-3.14)).toBe(false);
+        expect(isNumberPositive(-0.1)).toBe(false);
     });
 
-    it('should return false for a negative number', () => {
-        const negativeNumber = -7;
-
-        const result = isNumberPositive(negativeNumber);
-
-        expect(result).toBe(false);
+    it('should return false for zero', () => {
+        expect(isNumberPositive(0)).toBe(false);
     });
 
-    it('should return null for an empty value', () => {
-        const emptyValue = null;
-
-        const result = isNumberPositive(emptyValue);
-
-        expect(result).toBeNull();
+    it('should return false for non-numbers', () => {
+        expect(isNumberPositive('1')).toBe(false);
+        expect(isNumberPositive('positive')).toBe(false);
+        expect(isNumberPositive(null)).toBe(false);
+        expect(isNumberPositive(undefined)).toBe(false);
+        expect(isNumberPositive({})).toBe(false);
+        expect(isNumberPositive([])).toBe(false);
     });
 
-    it('should return null for a non-number value', () => {
-        const nonNumber = 'abc';
-
-        const result = isNumberPositive(nonNumber);
-
-        expect(result).toBeNull();
+    it('should handle Infinity', () => {
+        expect(isNumberPositive(Infinity)).toBe(true);
+        expect(isNumberPositive(-Infinity)).toBe(false);
     });
 });

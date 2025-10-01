@@ -1,27 +1,27 @@
-import FormatBytes from "../src/FormatBytes";
+import FormatBytes from '../src/number/FormatBytes.js';
 
-describe('FormatBytes', () => {
-    test('Formats bytes to KB', () => {
+describe('FormatBytes function', () => {
+    it('should format bytes correctly', () => {
+        expect(FormatBytes(0)).toBe('0 Bytes');
         expect(FormatBytes(1024)).toBe('1 KB');
-    });
-
-    test('Formats bytes to MB', () => {
         expect(FormatBytes(1048576)).toBe('1 MB');
     });
 
-    test('Formats bytes to GB', () => {
-        expect(FormatBytes(1073741824)).toBe('1 GB');
+    it('should handle decimal places', () => {
+        expect(FormatBytes(1536, 1)).toBe('1.5 KB');
+        expect(FormatBytes(1536, 0)).toBe('2 KB');
     });
 
-    test('Handles zero bytes', () => {
-        expect(FormatBytes(0)).toBe('0 Bytes');
+    it('should return "Invalid Bytes" for negative numbers', () => {
+        expect(FormatBytes(-1)).toBe('Invalid Bytes');
+        expect(FormatBytes(-1024)).toBe('Invalid Bytes');
     });
 
-    test('Handles negative bytes', () => {
-        expect(FormatBytes(-1000)).toBe('Invalid Bytes');
+    it('should handle large numbers', () => {
+        expect(FormatBytes(1099511627776)).toBe('1 TB');
     });
 
-    test('Handles less than 1 KB', () => {
-        expect(FormatBytes(500)).toBe('500 Bytes');
+    it('should use default 2 decimal places', () => {
+        expect(FormatBytes(1536)).toBe('1.5 KB');
     });
 });

@@ -1,43 +1,31 @@
-import hasKeyNonEmpty from '../src/hasKeyNonEmpty';
+import hasKeyNonEmpty from '../src/object/hasKeyNonEmpty.js';
 
 describe('hasKeyNonEmpty function', () => {
-    it('should return true if key exists and its value is not empty', () => {
-        expect(hasKeyNonEmpty({ name: 'John', age: 30 }, 'name')).toBe(true);
+    it('should return true when key has non-empty value', () => {
+        const obj = { name: 'John', age: 30 };
+        expect(hasKeyNonEmpty(obj, 'name')).toBe(true);
+        expect(hasKeyNonEmpty(obj, 'age')).toBe(true);
     });
 
-    it('should return false if key exists but its value is empty', () => {
-        expect(hasKeyNonEmpty({ name: '', age: 30 }, 'name')).toBe(false);
+    it('should return false when key has empty value', () => {
+        const obj = { name: '', age: 0, email: null };
+        expect(hasKeyNonEmpty(obj, 'name')).toBe(false);
+        expect(hasKeyNonEmpty(obj, 'age')).toBe(false);
+        expect(hasKeyNonEmpty(obj, 'email')).toBe(false);
     });
 
-    it('should return false if key does not exist in the object', () => {
-        expect(hasKeyNonEmpty({ name: 'John', age: 30 }, 'address')).toBe(false);
+    it('should return false when key does not exist', () => {
+        const obj = { name: 'John' };
+        expect(hasKeyNonEmpty(obj, 'age')).toBe(false);
     });
 
-    it('should return true if nested key exists and its value is not empty', () => {
-        expect(hasKeyNonEmpty({ person: { name: 'John', age: 30 } }, 'person', 'name')).toBe(true);
+    it('should handle empty string', () => {
+        const obj = { description: '' };
+        expect(hasKeyNonEmpty(obj, 'description')).toBe(false);
     });
 
-    it('should return false if nested key exists but its value is empty', () => {
-        expect(hasKeyNonEmpty({ person: { name: '', age: 30 } }, 'person', 'name')).toBe(false);
-    });
-
-    it('should return false if object is null', () => {
-        expect(hasKeyNonEmpty(null, 'age')).toBe(false);
-    });
-
-    it('should return false if object is undefined', () => {
-        expect(hasKeyNonEmpty(undefined, 'age')).toBe(false);
-    });
-
-    it('should return false if object is empty', () => {
-        expect(hasKeyNonEmpty({}, 'age')).toBe(false);
-    });
-
-    it('should return false if nested key does not exist', () => {
-        expect(hasKeyNonEmpty({ person: { name: 'John', age: 30 } }, 'person', 'address')).toBe(false);
-    });
-
-    it('should return false if nested key exists but its value is empty', () => {
-        expect(hasKeyNonEmpty({ person: { name: 'John', address: '' } }, 'person', 'address')).toBe(false);
+    it('should handle empty array', () => {
+        const obj = { items: [] };
+        expect(hasKeyNonEmpty(obj, 'items')).toBe(false);
     });
 });

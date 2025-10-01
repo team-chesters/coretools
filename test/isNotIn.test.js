@@ -1,17 +1,32 @@
-import isNotIn from '../src/isNotIn';
+import isNotIn from '../src/array/isNotIn.js';
 
 describe('isNotIn function', () => {
-    it('should return true when the value is not in the list', () => {
-        expect(isNotIn(1, 2, 3, 4)).toBe(true); // 1 is not in the list [2, 3, 4]
-        expect(isNotIn('apple', 'banana', 'cherry')).toBe(true); // 'apple' is not in the list ['banana', 'cherry']
+    it('should return true when value is not in list', () => {
+        expect(isNotIn('grape', 'apple', 'banana', 'orange')).toBe(true);
+        expect(isNotIn(4, 1, 2, 3)).toBe(true);
     });
 
-    it('should return false when the value is in the list', () => {
-        expect(isNotIn(3, 1, 2, 3, 4)).toBe(false); // 3 is in the list [1, 2, 3, 4]
-        expect(isNotIn('cherry', 'apple', 'banana', 'cherry')).toBe(false); // 'cherry' is in the list ['apple', 'banana', 'cherry']
+    it('should return false when value is in list', () => {
+        expect(isNotIn('apple', 'apple', 'banana', 'orange')).toBe(false);
+        expect(isNotIn(1, 1, 2, 3)).toBe(false);
     });
 
-    it('should return true when no values are provided', () => {
-        expect(isNotIn('apple')).toBe(true); // When no values are provided, it should always return true.
+    it('should handle empty list', () => {
+        expect(isNotIn('apple')).toBe(true);
+    });
+
+    it('should handle single value list', () => {
+        expect(isNotIn('banana', 'apple')).toBe(true);
+        expect(isNotIn('apple', 'apple')).toBe(false);
+    });
+
+    it('should handle mixed types', () => {
+        expect(isNotIn(4, '1', 1, 2)).toBe(true);
+        expect(isNotIn(1, '1', 2, 3)).toBe(true);
+    });
+
+    it('should use strict equality', () => {
+        expect(isNotIn(1, '1', 2, 3)).toBe(true);
+        expect(isNotIn('1', '1', '2', '3')).toBe(false);
     });
 });

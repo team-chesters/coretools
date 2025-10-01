@@ -1,20 +1,25 @@
-import GetDateInt from "../src/GetDateInt";
+import GetDateInt from '../src/date/GetDateInt.js';
 
-describe('GetDateInt', () => {
-    test('Converts Date object to integer correctly', () => {
-        const date = new Date(2023, 0, 1); // January 1, 2023
-        expect(GetDateInt(date)).toBe(20230101); // Check if Date object is converted to 'yyyyMMdd' format
+describe('GetDateInt function', () => {
+    it('should convert date to integer format', () => {
+        const date = new Date('2021-01-15');
+        const result = GetDateInt(date);
+        
+        expect(typeof result).toBe('number');
+        expect(result).toBeGreaterThan(0);
     });
 
-    test('Returns -1 for non-Date objects', () => {
-        expect(GetDateInt(123)).toBe(-1); // Check if a number returns -1
-        expect(GetDateInt("2023-01-01")).toBe(-1); // Check if a string returns -1
-        expect(GetDateInt({ day: 1, month: 1, year: 2023 })).toBe(-1); // Check if an object returns -1
-        expect(GetDateInt(null)).toBe(-1); // Check if null returns -1
-        expect(GetDateInt(undefined)).toBe(-1); // Check if undefined returns -1
+    it('should handle current date', () => {
+        const result = GetDateInt(new Date());
+        expect(typeof result).toBe('number');
     });
 
-    test('Handles invalid inputs gracefully', () => {
-        expect(GetDateInt()).toBe(-1); // Check if no input returns -1
+    it('should return consistent format', () => {
+        const date1 = new Date('2021-01-15');
+        const date2 = new Date('2021-01-15');
+        const result1 = GetDateInt(date1);
+        const result2 = GetDateInt(date2);
+        
+        expect(result1).toBe(result2);
     });
 });

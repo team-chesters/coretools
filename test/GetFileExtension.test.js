@@ -1,21 +1,28 @@
-import GetFileExtension from "../src/GetFileExtension";
+import GetFileExtension from '../src/file/GetFileExtension.js';
 
-test('Returns the file extension from a file name', () => {
-    const fileName1 = 'example.txt';
-    const fileName2 = 'document.pdf';
-    const fileName3 = 'script.js';
+describe('GetFileExtension function', () => {
+    it('should extract file extension correctly', () => {
+        expect(GetFileExtension('file.txt')).toBe('.txt');
+        expect(GetFileExtension('image.jpg')).toBe('.jpg');
+        expect(GetFileExtension('script.js')).toBe('.js');
+    });
 
-    const result1 = GetFileExtension(fileName1);
-    const result2 = GetFileExtension(fileName2);
-    const result3 = GetFileExtension(fileName3);
+    it('should handle files without extensions', () => {
+        expect(GetFileExtension('README')).toBe('');
+        expect(GetFileExtension('file')).toBe('');
+    });
 
-    // Check if the results are strings
-    expect(typeof result1).toBe('string');
-    expect(typeof result2).toBe('string');
-    expect(typeof result3).toBe('string');
+    it('should handle multiple dots', () => {
+        expect(GetFileExtension('file.min.js')).toBe('.js');
+        expect(GetFileExtension('backup.tar.gz')).toBe('.gz');
+    });
 
-    // Check the extracted file extensions
-    expect(result1).toBe('txt');
-    expect(result2).toBe('pdf');
-    expect(result3).toBe('js');
+    it('should handle empty string', () => {
+        expect(GetFileExtension('')).toBe('');
+    });
+
+    it('should handle files with only extension', () => {
+        expect(GetFileExtension('.gitignore')).toBe('.gitignore');
+        expect(GetFileExtension('.env')).toBe('.env');
+    });
 });

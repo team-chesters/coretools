@@ -1,4 +1,4 @@
-import ConvertHSLToHex from '../src/ConvertHSLToHex';
+import ConvertHSLToHex from '../src/convert/ConvertHSLToHex.js';
 
 const VALID_SKYBLUE = {
     h: 197,

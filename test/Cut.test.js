@@ -1,13 +1,20 @@
-import Cut from '../src/Cut';
+import Cut from '../src/string/Cut.js';
 
-const null_value = null;
-const empty_value = '';
-const short_value = 'Lorem';
-const string_value = 'Lorem ipsum dolor sit amet';
+describe('Cut function', () => {
+    it('should cut string by byte length', () => {
+        expect(Cut('Hello World', 5)).toBe('Hello');
+        expect(Cut('한글테스트', 6)).toBe('한글');
+    });
 
-test('Test function "Cut"', () => {
-    expect(Cut(empty_value, 3)).toEqual(empty_value);
-    expect(Cut(null_value, 8)).toBe(undefined);
-    expect(Cut(short_value, 8)).toBe(short_value);
-    expect(Cut(string_value, 8)).toBe('Lorem ip');
+    it('should return original string if within limit', () => {
+        expect(Cut('Hello', 10)).toBe('Hello');
+    });
+
+    it('should handle empty string', () => {
+        expect(Cut('', 5)).toBe('');
+    });
+
+    it('should handle non-string input', () => {
+        expect(Cut(123, 5)).toBeUndefined();
+    });
 });

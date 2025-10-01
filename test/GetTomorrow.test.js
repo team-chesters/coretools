@@ -1,12 +1,26 @@
-import GetTomorrow from "../src/GetTomorrow";
+import GetTomorrow from '../src/date/GetTomorrow.js';
 
 describe('GetTomorrow function', () => {
-    test('Return date object representing tomorrow', () => {
-        const mockDate = new Date('2023-09-15');
-        const tomorrow = GetTomorrow(mockDate);
+    it('should return tomorrow date', () => {
+        const tomorrow = GetTomorrow();
+        const today = new Date();
+        const expectedTomorrow = new Date(today);
+        expectedTomorrow.setDate(today.getDate() + 1);
+        expectedTomorrow.setHours(0, 0, 0, 0);
 
-        expect(tomorrow.getFullYear()).toBe(2023);
-        expect(tomorrow.getMonth()).toBe(8); // Months are zero-indexed (0: January, 1: February, ...)
-        expect(tomorrow.getDate()).toBe(16); // Tomorrow's date
+        expect(tomorrow.getTime()).toBe(expectedTomorrow.getTime());
+    });
+
+    it('should return a Date object', () => {
+        const tomorrow = GetTomorrow();
+        expect(tomorrow).toBeInstanceOf(Date);
+    });
+
+    it('should have time set to 00:00:00', () => {
+        const tomorrow = GetTomorrow();
+        expect(tomorrow.getHours()).toBe(0);
+        expect(tomorrow.getMinutes()).toBe(0);
+        expect(tomorrow.getSeconds()).toBe(0);
+        expect(tomorrow.getMilliseconds()).toBe(0);
     });
 });

@@ -1,35 +1,33 @@
-import MergeTagString from '../src/MergeTagString';
+import MergeTagString from '../src/string/MergeTagString.js';
 
 describe('MergeTagString function', () => {
-    it('should merge an array of tags into a space-separated string', () => {
-        const tagList = ['programming', 'javascript', 'coding'];
-
-        const mergedTags = MergeTagString(tagList);
-
-        expect(mergedTags).toBe('#programming #javascript #coding');
+    it('should merge tag strings', () => {
+        const result = MergeTagString('tag1', 'tag2', 'tag3');
+        expect(result).toBe('tag1,tag2,tag3');
     });
 
-    it('should trim and merge tags with spaces', () => {
-        const tagList = [' web development ', '  front-end ', '   design   '];
-
-        const mergedTags = MergeTagString(tagList);
-
-        expect(mergedTags).toBe('#web development #front-end #design');
+    it('should handle single tag', () => {
+        const result = MergeTagString('tag1');
+        expect(result).toBe('tag1');
     });
 
-    it('should handle an empty array', () => {
-        const tagList = [];
-
-        const mergedTags = MergeTagString(tagList);
-
-        expect(mergedTags).toBe('');
+    it('should handle empty tags', () => {
+        const result = MergeTagString('tag1', '', 'tag3');
+        expect(result).toBe('tag1,,tag3');
     });
 
-    it('should handle tags with special characters', () => {
-        const tagList = ['web development', 'front-end', 'design & UI'];
+    it('should handle no arguments', () => {
+        const result = MergeTagString();
+        expect(result).toBe('');
+    });
 
-        const mergedTags = MergeTagString(tagList);
+    it('should handle duplicate tags', () => {
+        const result = MergeTagString('tag1', 'tag1', 'tag2');
+        expect(result).toBe('tag1,tag1,tag2');
+    });
 
-        expect(mergedTags).toBe('#web development #front-end #design & UI');
+    it('should handle special characters in tags', () => {
+        const result = MergeTagString('tag-1', 'tag_2', 'tag.3');
+        expect(result).toBe('tag-1,tag_2,tag.3');
     });
 });

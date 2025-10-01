@@ -1,13 +1,28 @@
-import GetDateRangeToNowStartEnd from "../src/GetDateRangeToNowStartEnd";
+import GetDateRangeToNowStartEnd from '../src/date/GetDateRangeToNowStartEnd.js';
 
-test('Generates start and end date range correctly', () => {
-    const beforeDays = 7; // Generating a date range for the last 7 days
-    const { start, end } = GetDateRangeToNowStartEnd(beforeDays);
+describe('GetDateRangeToNowStartEnd function', () => {
+    it('should return start and end dates', () => {
+        const startDate = new Date('2021-01-01');
+        const result = GetDateRangeToNowStartEnd(startDate);
+        
+        expect(result).toHaveProperty('start');
+        expect(result).toHaveProperty('end');
+        expect(result.start).toBeInstanceOf(Date);
+        expect(result.end).toBeInstanceOf(Date);
+    });
 
-    // Check if the parameter is empty
-    expect(GetDateRangeToNowStartEnd()).toBe('parameter is empty');
+    it('should handle recent start date', () => {
+        const recentDate = new Date();
+        recentDate.setDate(recentDate.getDate() - 7);
+        
+        const result = GetDateRangeToNowStartEnd(recentDate);
+        expect(result.start.getTime()).toBeLessThanOrEqual(result.end.getTime());
+    });
 
-    // Check if the generated dates are instances of Date
-    expect(start instanceof Date).toBe(true);
-    expect(end instanceof Date).toBe(true);
+    it('should handle same day start and end', () => {
+        const today = new Date();
+        const result = GetDateRangeToNowStartEnd(today);
+        
+        expect(result.start.getTime()).toBeLessThanOrEqual(result.end.getTime());
+    });
 });

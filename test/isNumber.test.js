@@ -1,4 +1,4 @@
-import isNumber from '../src/isNumber';
+import isNumber from '../src/number/isNumber.js';
 
 describe('isNumber function', () => {
     it('should return true for valid numbers', () => {

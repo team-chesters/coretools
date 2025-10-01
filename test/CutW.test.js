@@ -1,13 +1,16 @@
-import CutW from '../src/CutW';
+import CutW from '../src/string/CutW.js';
 
-const null_value = null;
-const empty_value = '';
-const short_value = 'Lorem';
-const string_value = 'Lorem ipsum dolor sit amet';
+describe('CutW function', () => {
+    it('should cut string by character length', () => {
+        expect(CutW('Hello World', 5)).toBe('Hello');
+        expect(CutW('한글테스트', 2)).toBe('한글');
+    });
 
-test('Test function "Cut"', () => {
-    expect(CutW(null_value, 8)).toBe(empty_value);
-    expect(CutW(empty_value, 3)).toEqual(empty_value);
-    expect(CutW(short_value, 8)).toBe(short_value);
-    expect(CutW(string_value, 8)).toBe('Lorem ip...');
+    it('should return original string if within limit', () => {
+        expect(CutW('Hello', 10)).toBe('Hello');
+    });
+
+    it('should handle empty string', () => {
+        expect(CutW('', 5)).toBe('');
+    });
 });

@@ -1,44 +1,38 @@
-import isInDateRange from '../src/isInDateRange';
-import GetDateFromTs from '../src/GetDateFromTs';
+import isInDateRange from '../src/date/isInDateRange.js';
 
 describe('isInDateRange function', () => {
-    it('should return true for a date within the specified range', () => {
-        const date = new Date('2023-01-15');
-        const startDate = new Date('2023-01-01');
-        const endDate = new Date('2023-01-31');
-
-        const result = isInDateRange(date, startDate, endDate);
-
-        expect(result).toBe(true);
+    it('should return true when date is within range', () => {
+        const start = new Date('2021-01-01');
+        const end = new Date('2021-01-31');
+        const testDate = new Date('2021-01-15');
+        
+        expect(isInDateRange(testDate, start, end)).toBe(true);
     });
 
-    it('should return false for a date outside the specified range', () => {
-        const date = new Date('2023-02-15');
-        const startDate = new Date('2023-01-01');
-        const endDate = new Date('2023-01-31');
-
-        const result = isInDateRange(date, startDate, endDate);
-
-        expect(result).toBe(false);
+    it('should return false when date is outside range', () => {
+        const start = new Date('2021-01-01');
+        const end = new Date('2021-01-31');
+        const testDate = new Date('2021-02-15');
+        
+        expect(isInDateRange(testDate, start, end)).toBe(false);
     });
 
-    it('should handle UNIX timestamps as input', () => {
-        const date = 1674259200;
-        const startDate = new Date('2023-01-02');
-        const endDate = new Date('2023-01-30');
-
-        const result = isInDateRange(GetDateFromTs(date), startDate, endDate);
-
-        expect(result).toBe(true);
+    it('should return true when date equals start or end', () => {
+        const start = new Date('2021-01-01');
+        const end = new Date('2021-01-31');
+        
+        expect(isInDateRange(start, start, end)).toBe(true);
+        expect(isInDateRange(end, start, end)).toBe(true);
     });
 
-    it('should return false for empty input date', () => {
-        const date = null;
-        const startDate = new Date('2023-01-02');
-        const endDate = new Date('2023-01-30');
+    it('should handle same start and end dates', () => {
+        const date = new Date('2021-01-01');
+        expect(isInDateRange(date, date, date)).toBe(true);
+    });
 
-        const result = isInDateRange(date, startDate, endDate);
-
-        expect(result).toBe(false);
+    it('should return false for null/undefined dates', () => {
+        expect(isInDateRange(null, new Date(), new Date())).toBe(false);
+        expect(isInDateRange(new Date(), null, new Date())).toBe(false);
+        expect(isInDateRange(new Date(), new Date(), null)).toBe(false);
     });
 });

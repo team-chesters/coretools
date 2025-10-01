@@ -1,11 +1,28 @@
-import Len from "../src/Len";
-import GetDayDiffNow from "../src/GetDayDiffNow";
+import GetDayDiffNow from '../src/date/GetDayDiffNow.js';
 
-test('Calculates difference in days between a timestamp and the current date', () => {
-    const timestamp = 1703980800; // For instance, a timestamp representing a date
+describe('GetDayDiffNow function', () => {
+    it('should calculate day difference from now', () => {
+        const pastDate = new Date();
+        pastDate.setDate(pastDate.getDate() - 7);
+        
+        const result = GetDayDiffNow(pastDate);
+        expect(typeof result).toBe('number');
+        expect(result).toBeGreaterThanOrEqual(0);
+    });
 
-    const result = GetDayDiffNow(timestamp);
+    it('should handle today date', () => {
+        const today = new Date();
+        const result = GetDayDiffNow(today);
+        
+        expect(typeof result).toBe('number');
+        expect(result).toBe(0);
+    });
 
-    // Check if the result is a number
-    expect(typeof result).toBe('number');
+    it('should handle future date', () => {
+        const futureDate = new Date();
+        futureDate.setDate(futureDate.getDate() + 7);
+        
+        const result = GetDayDiffNow(futureDate);
+        expect(typeof result).toBe('number');
+    });
 });

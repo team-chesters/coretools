@@ -1,38 +1,27 @@
-import FilterJsonWithoutEmptyKey from "../src/FilterJsonWithoutEmptyKey";
+import FilterJsonWithoutEmptyKey from '../src/object/FilterJsonWithoutEmptyKey.js';
 
-describe('FilterJsonWithoutEmptyKey', () => {
-    test('Filters JSON object with specified keys', () => {
-        const jsonObject = {
-            name: 'John Doe',
-            age: 30,
-            email: null,
-            address: undefined,
-        };
-        const keysToKeep = ['name', 'age', 'email', 'address'];
-
-        const filteredObject = FilterJsonWithoutEmptyKey(jsonObject, keysToKeep);
-        expect(filteredObject).toEqual({ name: 'John Doe', age: 30 });
+describe('FilterJsonWithoutEmptyKey function', () => {
+    it('should filter object keeping only non-empty values', () => {
+        const obj = { a: 'value', b: null, c: 'test', d: undefined };
+        const keys = ['a', 'b', 'c', 'd'];
+        const result = FilterJsonWithoutEmptyKey(obj, keys);
+        
+        expect(result).toEqual({ a: 'value', c: 'test' });
     });
 
-    test('Handles empty keysOfInterest array', () => {
-        const jsonObject = {
-            name: 'John Doe',
-            age: 30,
-        };
-        const emptyKeysToKeep = [];
-
-        const filteredObject = FilterJsonWithoutEmptyKey(jsonObject, emptyKeysToKeep);
-        expect(filteredObject).toEqual({});
+    it('should handle empty object', () => {
+        const obj = {};
+        const keys = ['a', 'b'];
+        const result = FilterJsonWithoutEmptyKey(obj, keys);
+        
+        expect(result).toEqual({});
     });
 
-    test('Handles keysOfInterest not present in the object', () => {
-        const jsonObject = {
-            name: 'John Doe',
-            age: 30,
-        };
-        const keysToKeep = ['email', 'address'];
-
-        const filteredObject = FilterJsonWithoutEmptyKey(jsonObject, keysToKeep);
-        expect(filteredObject).toEqual({});
+    it('should handle empty keys array', () => {
+        const obj = { a: 'value' };
+        const keys = [];
+        const result = FilterJsonWithoutEmptyKey(obj, keys);
+        
+        expect(result).toEqual({});
     });
 });

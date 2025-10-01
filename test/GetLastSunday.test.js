@@ -1,11 +1,25 @@
-import GetLastSunday from "../src/GetLastSunday";
+import GetLastSunday from '../src/date/GetLastSunday.js';
 
-test('Returns the date of the last Sunday before a given date', () => {
-    const someDate = new Date('2023-01-15'); // For instance, a specific date
+describe('GetLastSunday function', () => {
+    it('should return last Sunday date', () => {
+        const result = GetLastSunday();
+        
+        expect(result).toBeInstanceOf(Date);
+        expect(result.getDay()).toBe(0); // Sunday
+    });
 
-    const result = GetLastSunday(someDate);
+    it('should return past Sunday', () => {
+        const result = GetLastSunday();
+        const now = new Date();
+        
+        expect(result.getTime()).toBeLessThanOrEqual(now.getTime());
+    });
 
-    // Check if the result is an instance of Date
-    expect(result instanceof Date).toBe(true);
+    it('should have time set to start of day', () => {
+        const result = GetLastSunday();
+        
+        expect(result.getHours()).toBe(0);
+        expect(result.getMinutes()).toBe(0);
+        expect(result.getSeconds()).toBe(0);
+    });
 });
-

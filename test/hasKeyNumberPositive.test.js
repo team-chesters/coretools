@@ -1,56 +1,31 @@
-import hasKeyNumberPositive from '../src/hasKeyNumberPositive';
+import hasKeyNumberPositive from '../src/object/hasKeyNumberPositive.js';
 
 describe('hasKeyNumberPositive function', () => {
-    it('should return false if key exists and its value is a positive number, but level is not defined', () => {
-        expect(hasKeyNumberPositive({ count: 5 })).toBe(false);
+    it('should return true when key has positive number', () => {
+        const obj = { count: 5, price: 10.99 };
+        expect(hasKeyNumberPositive(obj, 'count')).toBe(true);
+        expect(hasKeyNumberPositive(obj, 'price')).toBe(true);
     });
 
-    it('should return false if key exists but its value is zero', () => {
-        expect(hasKeyNumberPositive({ count: 0 })).toBe(false);
+    it('should return false when key has negative number', () => {
+        const obj = { count: -5, balance: -100 };
+        expect(hasKeyNumberPositive(obj, 'count')).toBe(false);
+        expect(hasKeyNumberPositive(obj, 'balance')).toBe(false);
     });
 
-    it('should return false if key exists but its value is negative', () => {
-        expect(hasKeyNumberPositive({ count: -5 })).toBe(false);
+    it('should return false when key has zero', () => {
+        const obj = { count: 0 };
+        expect(hasKeyNumberPositive(obj, 'count')).toBe(false);
     });
 
-    it('should return false if key exists but its value is not a number', () => {
-        expect(hasKeyNumberPositive({ count: '5' })).toBe(false);
+    it('should return false when key does not exist', () => {
+        const obj = { name: 'John' };
+        expect(hasKeyNumberPositive(obj, 'count')).toBe(false);
     });
 
-    it('should return false if key does not exist in the object', () => {
-        expect(hasKeyNumberPositive({ name: 'John', age: 30 }, 'address')).toBe(false);
-    });
-
-    it('should return true if nested key exists and its value is a positive number', () => {
-        expect(hasKeyNumberPositive({ person: { age: 30 } }, 'person', 'age')).toBe(true);
-    });
-
-    it('should return false if nested key exists but its value is zero', () => {
-        expect(hasKeyNumberPositive({ person: { age: 0 } }, 'person', 'age')).toBe(false);
-    });
-
-    it('should return false if nested key exists but its value is negative', () => {
-        expect(hasKeyNumberPositive({ person: { age: -30 } }, 'person', 'age')).toBe(false);
-    });
-
-
-    it('should return false if nested key exists but its value is not a number', () => {
-        expect(hasKeyNumberPositive({ person: { age: '30' } }, 'person', 'age')).toBe(false);
-    });
-
-    it('should return false if object is null', () => {
-        expect(hasKeyNumberPositive(null, 'age')).toBe(false);
-    });
-
-    it('should return false if object is undefined', () => {
-        expect(hasKeyNumberPositive(undefined, 'age')).toBe(false);
-    });
-
-    it('should return false if object is empty', () => {
-        expect(hasKeyNumberPositive({}, 'age')).toBe(false);
-    });
-
-    it('should return false if nested key does not exist', () => {
-        expect(hasKeyNumberPositive({ person: { age: 30 } }, 'person', 'address')).toBe(false);
+    it('should return false for non-number values', () => {
+        const obj = { count: '5', price: null };
+        expect(hasKeyNumberPositive(obj, 'count')).toBe(false);
+        expect(hasKeyNumberPositive(obj, 'price')).toBe(false);
     });
 });

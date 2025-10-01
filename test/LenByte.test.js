@@ -1,25 +1,29 @@
-import LenByte from '../src/LenByte';
+import LenByte from '../src/string/LenByte.js';
 
 describe('LenByte function', () => {
-    it('should return the byte length of a string', () => {
-        expect(LenByte('Hello')).toBe(5); // Single-byte characters
-        expect(LenByte('안녕하세요')).toBe(10); // Multi-byte characters (UTF-8)
-        expect(LenByte('12345')).toBe(5); // Single-byte characters (digits)
+    it('should return byte length for ASCII strings', () => {
+        expect(LenByte('Hello')).toBe(5);
+        expect(LenByte('World!')).toBe(6);
     });
 
-    it('should return 0 for an empty string', () => {
+    it('should return byte length for Unicode strings', () => {
+        expect(LenByte('한글')).toBe(6); // 3 bytes per Korean character
+        expect(LenByte('한글테스트')).toBe(15);
+    });
+
+    it('should handle mixed ASCII and Unicode', () => {
+        expect(LenByte('Hello한글')).toBe(11); // 5 + 6
+    });
+
+    it('should handle empty string', () => {
         expect(LenByte('')).toBe(0);
     });
 
-    it('should handle special characters correctly', () => {
-        // Euro symbol (€) is a multi-byte character
-        expect(LenByte('Price: €50')).toBe(11); // 8 single-byte characters + 3 multi-byte characters
+    it('should handle special characters', () => {
+        expect(LenByte('@#$%^&*()')).toBe(10);
     });
 
-    it('should return 0 for non-string inputs', () => {
-        expect(LenByte(42)).toBe(0); // Number input
-        expect(LenByte(null)).toBe(0); // null input
-        expect(LenByte(undefined)).toBe(0); // undefined input
-        expect(LenByte({})).toBe(0); // Empty object input
+    it('should handle emojis', () => {
+        expect(LenByte('😀')).toBe(4); // Emoji is 4 bytes in UTF-8
     });
 });

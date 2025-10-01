@@ -1,14 +1,31 @@
-import hasKey from '../src/hasKey';
+import hasKey from '../src/object/hasKey.js';
 
-const profile = {
-    id: 1,
-    first_name: 'John',
-    last_name: 'Doe',
-    email: 'johndoe@test.com',
-    gender: 'male',
-};
+describe('hasKey function', () => {
+    it('should return true for existing key', () => {
+        const obj = { name: 'John', age: 30 };
+        expect(hasKey(obj, 'name')).toBe(true);
+        expect(hasKey(obj, 'age')).toBe(true);
+    });
 
-test('Test function "hasKey"', () => {
-    expect(hasKey(profile, 'id')).toBe(true);
-    expect(hasKey(profile, 'middle_name')).toBe(false);
+    it('should return false for non-existing key', () => {
+        const obj = { name: 'John' };
+        expect(hasKey(obj, 'age')).toBe(false);
+        expect(hasKey(obj, 'email')).toBe(false);
+    });
+
+    it('should handle nested keys', () => {
+        const obj = { user: { profile: { name: 'John' } } };
+        expect(hasKey(obj, 'user', 'profile', 'name')).toBe(true);
+        expect(hasKey(obj, 'user', 'profile')).toBe(true);
+    });
+
+    it('should return false for null/undefined objects', () => {
+        expect(hasKey(null, 'key')).toBe(false);
+        expect(hasKey(undefined, 'key')).toBe(false);
+    });
+
+    it('should return false for null values', () => {
+        const obj = { name: null };
+        expect(hasKey(obj, 'name')).toBe(false);
+    });
 });

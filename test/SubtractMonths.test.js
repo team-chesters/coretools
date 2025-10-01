@@ -1,43 +1,41 @@
-import SubtractMonths from '../src/SubtractMonths';
+import SubtractMonths from '../src/date/SubtractMonths.js';
 
 describe('SubtractMonths function', () => {
-    it('should subtract the specified number of months from the current date', () => {
-        const today = new Date();
-        const threeMonthsAgo = SubtractMonths(3);
-
-        expect(threeMonthsAgo.getFullYear()).toBe(today.getFullYear());
-        expect(threeMonthsAgo.getMonth()).toBe(today.getMonth() - 3);
+    it('should subtract months from date', () => {
+        const date = new Date('2021-03-15');
+        const result = SubtractMonths(date, 1);
+        
+        expect(result.getMonth()).toBe(1); // February (0-indexed)
+        expect(result.getFullYear()).toBe(2021);
     });
 
-    it('should subtract months from a custom date', () => {
-        const customDate = new Date('2023-07-15');
-        const fourMonthsAgo = SubtractMonths(4, customDate);
-
-        expect(fourMonthsAgo.getFullYear()).toBe(2023);
-        expect(fourMonthsAgo.getMonth()).toBe(2); // 0-based month (January is 0), 
+    it('should handle year boundaries', () => {
+        const date = new Date('2021-01-15');
+        const result = SubtractMonths(date, 1);
+        
+        expect(result.getMonth()).toBe(11); // December (0-indexed)
+        expect(result.getFullYear()).toBe(2020);
     });
 
-    it('should handle subtracting 0 months', () => {
-        const today = new Date();
-        const sameDate = SubtractMonths(0);
-
-        expect(sameDate.getFullYear()).toBe(today.getFullYear());
-        expect(sameDate.getMonth()).toBe(today.getMonth());
+    it('should handle multiple months', () => {
+        const date = new Date('2021-06-15');
+        const result = SubtractMonths(date, 6);
+        
+        expect(result.getMonth()).toBe(0); // January (0-indexed)
+        expect(result.getFullYear()).toBe(2021);
     });
 
-    it('should handle subtracting more months than available in the current year', () => {
-        const today = new Date();
-        const twelveMonthsAgo = SubtractMonths(12);
-
-        expect(twelveMonthsAgo.getFullYear()).toBe(today.getFullYear() - 1);
-        expect(twelveMonthsAgo.getMonth()).toBe(today.getMonth());
+    it('should preserve day when possible', () => {
+        const date = new Date('2021-03-15');
+        const result = SubtractMonths(date, 1);
+        
+        expect(result.getDate()).toBe(15);
     });
 
-    it('should handle negative numOfMonths', () => {
-        const today = new Date();
-        const futureDate = SubtractMonths(-3);
-
-        expect(futureDate.getFullYear()).toBe(today.getFullYear());
-        expect(futureDate.getMonth()).toBe(today.getMonth() + 3);
+    it('should handle end-of-month edge cases', () => {
+        const date = new Date('2021-03-31');
+        const result = SubtractMonths(date, 1);
+        
+        expect(result.getMonth()).toBe(1); // February
     });
 });

@@ -1,4 +1,4 @@
-import ConvertDecimalToHex from '../src/ConvertDecimalToHex';
+import ConvertDecimalToHex from '../src/convert/ConvertDecimalToHex.js';
 
 describe('ConvertDecimalToHex', () => {
     test('Converts decimal 10 to hexadecimal', () => {

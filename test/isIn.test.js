@@ -1,22 +1,32 @@
-import isIn from '../src/isIn';
+import isIn from '../src/array/isIn.js';
 
 describe('isIn function', () => {
-    it('returns true if the value is in the list', () => {
+    it('should return true when value is in list', () => {
+        expect(isIn('apple', 'apple', 'banana', 'orange')).toBe(true);
         expect(isIn(1, 1, 2, 3)).toBe(true);
-        expect(isIn('hello', 'hello', 'world')).toBe(true);
     });
 
-    it('returns false if the value is not in the list', () => {
+    it('should return false when value is not in list', () => {
+        expect(isIn('grape', 'apple', 'banana', 'orange')).toBe(false);
         expect(isIn(4, 1, 2, 3)).toBe(false);
-        expect(isIn('test', 'hello', 'world')).toBe(false);
     });
 
-    it('handles different data types', () => {
-        expect(isIn('1', 1, 2, 3)).toBe(false); // '1' (string) is not equal to 1 (number)
-        expect(isIn(true, false, null, undefined)).toBe(false);
+    it('should handle empty list', () => {
+        expect(isIn('apple')).toBe(false);
     });
 
-    it('returns false for an empty list', () => {
-        expect(isIn('value')).toBe(false);
+    it('should handle single value list', () => {
+        expect(isIn('apple', 'apple')).toBe(true);
+        expect(isIn('banana', 'apple')).toBe(false);
+    });
+
+    it('should handle mixed types', () => {
+        expect(isIn(1, '1', 1, 2)).toBe(true);
+        expect(isIn('1', 1, 2, 3)).toBe(false);
+    });
+
+    it('should use strict equality', () => {
+        expect(isIn(1, '1', 2, 3)).toBe(false);
+        expect(isIn('1', '1', '2', '3')).toBe(true);
     });
 });

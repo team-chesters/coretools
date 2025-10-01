@@ -1,4 +1,4 @@
-import isEmpty from '../src/isEmpty';
+import isEmpty from '../src/object/isEmpty.js';
 
 describe('isEmpty function', () => {
     it('returns true for null', () => {

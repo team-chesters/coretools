@@ -1,24 +1,42 @@
-import GetUnix from "../src/GetUnix";
+import GetUnix from '../src/timestamp/GetUnix.js';
 
 describe('GetUnix function', () => {
-    it('should return the Unix time of a valid Date object', () => {
-        const date = new Date('2023-01-15');
+    it('should return Unix timestamp for current time', () => {
+        const result = GetUnix();
+        const expected = Math.floor(Date.now() / 1000);
+        
+        expect(typeof result).toBe('number');
+        expect(result).toBeGreaterThan(0);
+        expect(result).toBeLessThanOrEqual(expected);
+    });
+
+    it('should return Unix timestamp for given date', () => {
+        const date = new Date('2021-01-01 00:00:00 UTC');
         const result = GetUnix(date);
         const expected = Math.floor(date.getTime() / 1000);
-        expect(result).toEqual(expected);
+        
+        expect(result).toBe(expected);
     });
 
-    it('should return 0 if the input is not a valid Date object', () => {
-        const notDate = '2023-01-15'; // not a Date object
-        const result = GetUnix(notDate);
-        const expected = 0;
-        expect(result).toEqual(expected);
+    it('should handle different timezones', () => {
+        const date = new Date('2021-01-01 12:00:00');
+        const result = GetUnix(date);
+        
+        expect(typeof result).toBe('number');
+        expect(result).toBeGreaterThan(0);
     });
 
-    it('should return 0 if the input is an undefined', () => {
-        const undefinedDate = undefined;
-        const resultUndefined = GetUnix(undefinedDate);
-        const expected = 0;
-        expect(resultUndefined).toEqual(expected);
+    it('should return integer value', () => {
+        const result = GetUnix();
+        
+        expect(Number.isInteger(result)).toBe(true);
+    });
+
+    it('should be approximately current time', () => {
+        const result = GetUnix();
+        const now = Math.floor(Date.now() / 1000);
+        
+        expect(result).toBeLessThanOrEqual(now);
+        expect(now - result).toBeLessThan(5); // Within 5 seconds
     });
 });

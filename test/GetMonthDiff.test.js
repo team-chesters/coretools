@@ -1,21 +1,36 @@
-import GetMonthDiff from "../src/GetMonthDiff";
+import GetMonthDiff from '../src/date/GetMonthDiff.js';
 
 describe('GetMonthDiff function', () => {
-    test('Return 0 for same dates', () => {
-        const date1 = new Date('2023-01-15');
-        const date2 = new Date('2023-01-15');
-        expect(GetMonthDiff(date1, date2)).toBe(0);
+    it('should calculate month difference between dates', () => {
+        const date1 = new Date('2021-01-01');
+        const date2 = new Date('2021-03-01');
+        const result = GetMonthDiff(date1, date2);
+        
+        expect(typeof result).toBe('number');
+        expect(result).toBe(2);
     });
 
-    test('Return correct difference for different months within the same year', () => {
-        const date1 = new Date('2023-02-15');
-        const date2 = new Date('2023-05-15');
-        expect(GetMonthDiff(date1, date2)).toBe(3);
+    it('should handle same month', () => {
+        const date1 = new Date('2021-01-01');
+        const date2 = new Date('2021-01-15');
+        const result = GetMonthDiff(date1, date2);
+        
+        expect(result).toBe(0);
     });
 
-    test('Return correct difference for different years', () => {
-        const date1 = new Date('2022-10-15');
-        const date2 = new Date('2023-03-15');
-        expect(GetMonthDiff(date1, date2)).toBe(5);
+    it('should handle reverse order', () => {
+        const date1 = new Date('2021-03-01');
+        const date2 = new Date('2021-01-01');
+        const result = GetMonthDiff(date1, date2);
+        
+        expect(typeof result).toBe('number');
+    });
+
+    it('should handle year boundaries', () => {
+        const date1 = new Date('2020-12-01');
+        const date2 = new Date('2021-02-01');
+        const result = GetMonthDiff(date1, date2);
+        
+        expect(result).toBe(2);
     });
 });

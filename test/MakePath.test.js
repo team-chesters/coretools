@@ -1,29 +1,29 @@
-import MakePath from '../src/MakePath';
+import MakePath from '../src/string/MakePath.js';
 
 describe('MakePath function', () => {
-    it('should construct a URL with default separator', () => {
-        const url = MakePath(['https://example.com', 'folder', 'file.txt']);
-        expect(url).toBe('https://example.com/folder/file.txt');
+    it('should join path segments with forward slashes', () => {
+        expect(MakePath('folder', 'file.txt')).toBe('folder/file.txt');
+        expect(MakePath('path', 'to', 'file')).toBe('path/to/file');
     });
 
-    it('should construct a URL with custom separator', () => {
-        const url = MakePath(['https://example.com', 'folder', 'file.txt'], '/');
-        expect(url).toBe('https://example.com/folder/file.txt');
+    it('should handle single segment', () => {
+        expect(MakePath('file.txt')).toBe('file.txt');
     });
 
-    it('should handle leading and trailing separators', () => {
-        const url1 = MakePath(['https://example.com/', 'folder', 'file.txt']);
-        expect(url1).toBe('https://example.com/folder/file.txt');
-
-        const url2 = MakePath(['https://example.com', 'folder/', 'file.txt']);
-        expect(url2).toBe('https://example.com/folder/file.txt');
-
-        const url3 = MakePath(['https://example.com/', 'folder/', 'file.txt']);
-        expect(url3).toBe('https://example.com/folder/file.txt');
+    it('should handle empty segments', () => {
+        expect(MakePath('', 'file.txt')).toBe('/file.txt');
+        expect(MakePath('folder', '')).toBe('folder/');
     });
 
-    it('should return the base URL for an empty array', () => {
-        const url = MakePath([]);
-        expect(url).toBe('');
+    it('should handle multiple empty segments', () => {
+        expect(MakePath('', '', 'file.txt')).toBe('//file.txt');
+    });
+
+    it('should handle segments with existing slashes', () => {
+        expect(MakePath('folder/', '/file.txt')).toBe('folder//file.txt');
+    });
+
+    it('should handle no arguments', () => {
+        expect(MakePath()).toBe('');
     });
 });

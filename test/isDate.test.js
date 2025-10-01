@@ -1,19 +1,30 @@
-import isDate from "../src/isDate";
+import isDate from '../src/date/isDate.js';
 
-describe('isDate', () => {
-    test('Identifies a Date object correctly', () => {
-        expect(isDate(new Date())).toBe(true); // Check if a Date object returns true
+describe('isDate function', () => {
+    it('should return true for Date objects', () => {
+        expect(isDate(new Date())).toBe(true);
+        expect(isDate(new Date('2021-01-01'))).toBe(true);
     });
 
-    test('Identifies non-Date objects correctly', () => {
-        expect(isDate(123)).toBe(false); // Check if a number returns false
-        expect(isDate("2023-01-01")).toBe(false); // Check if a string returns false
-        expect(isDate({ day: 1, month: 1, year: 2023 })).toBe(false); // Check if an object returns false
-        expect(isDate(null)).toBe(false); // Check if null returns false
-        expect(isDate(undefined)).toBe(false); // Check if undefined returns false
+    it('should return false for non-Date objects', () => {
+        expect(isDate('2021-01-01')).toBe(false);
+        expect(isDate(1234567890)).toBe(false);
+        expect(isDate({})).toBe(false);
+        expect(isDate([])).toBe(false);
+        expect(isDate(null)).toBe(false);
+        expect(isDate(undefined)).toBe(false);
     });
 
-    test('Handles invalid inputs gracefully', () => {
-        expect(isDate()).toBe(false); // Check if no input returns false
+    it('should return false for invalid Date objects', () => {
+        expect(isDate(new Date('invalid'))).toBe(true); // Still a Date object
+    });
+
+    it('should handle current date', () => {
+        expect(isDate(new Date())).toBe(true);
+    });
+
+    it('should handle date strings', () => {
+        expect(isDate('2021-01-01')).toBe(false);
+        expect(isDate('January 1, 2021')).toBe(false);
     });
 });

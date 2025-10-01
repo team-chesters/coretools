@@ -1,4 +1,4 @@
-import isNumberNegative from '../src/isNumberNegative';
+import isNumberNegative from '../src/number/isNumberNegative.js';
 
 describe('isNumberNegative function', () => {
     it('should return true for a negative number', () => {

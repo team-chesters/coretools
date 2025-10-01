@@ -1,10 +1,28 @@
-import GetDayStart from "../src/GetDayStart";
+import GetDayStart from '../src/date/GetDayStart.js';
 
-test('Returns the start of a given day', () => {
-    const someDate = new Date('2023-01-01'); // For instance, a specific date
+describe('GetDayStart function', () => {
+    it('should return start of day for given date', () => {
+        const date = new Date('2021-01-15');
+        const result = GetDayStart(date);
+        
+        expect(result).toBeInstanceOf(Date);
+        expect(result.getHours()).toBe(0);
+        expect(result.getMinutes()).toBe(0);
+        expect(result.getSeconds()).toBe(0);
+    });
 
-    const result = GetDayStart(someDate);
+    it('should preserve date information', () => {
+        const date = new Date('2021-01-15');
+        const result = GetDayStart(date);
+        
+        expect(result.getFullYear()).toBe(2021);
+        expect(result.getMonth()).toBe(0);
+        expect(result.getDate()).toBe(15);
+    });
 
-    // Check if the result is an instance of Date
-    expect(result instanceof Date).toBe(true);
+    it('should handle current date', () => {
+        const result = GetDayStart(new Date());
+        expect(result).toBeInstanceOf(Date);
+        expect(result.getHours()).toBe(0);
+    });
 });

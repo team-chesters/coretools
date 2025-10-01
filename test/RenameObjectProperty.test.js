@@ -1,31 +1,39 @@
-import RenameObjectProperty from '../src/RenameObjectProperty';
+import RenameObjectProperty from '../src/object/RenameObjectProperty.js';
 
 describe('RenameObjectProperty function', () => {
-    it('should rename a property of an object', () => {
-        const obj = { name: 'John', age: 30 };
-        RenameObjectProperty(obj, 'name', 'firstName');
-        expect(obj.firstName).toBe('John');
-        expect(obj.hasOwnProperty('name')).toBe(false);
+    it('should rename object property', () => {
+        const obj = { oldName: 'value', other: 'keep' };
+        const result = RenameObjectProperty(obj, 'oldName', 'newName');
+        
+        expect(result).toEqual({ newName: 'value', other: 'keep' });
     });
 
-    it('should handle renaming to an existing property', () => {
-        const obj = { name: 'John', age: 30 };
-        RenameObjectProperty(obj, 'name', 'age');
-        expect(obj.age).toBe('John');
-        expect(obj.hasOwnProperty('name')).toBe(false);
-    });
-
-    it('should handle non-existing properties', () => {
-        const obj = { name: 'John', age: 30 };
-        RenameObjectProperty(obj, 'email', 'address');
-        expect(obj.hasOwnProperty('email')).toBe(false);
-        expect(obj.hasOwnProperty('address')).toBe(false);
+    it('should handle non-existent property', () => {
+        const obj = { other: 'keep' };
+        const result = RenameObjectProperty(obj, 'nonExistent', 'newName');
+        
+        expect(result).toEqual({ other: 'keep', newName: undefined });
     });
 
     it('should handle empty object', () => {
         const obj = {};
-        RenameObjectProperty(obj, 'name', 'firstName');
-        expect(obj.hasOwnProperty('name')).toBe(false);
-        expect(obj.hasOwnProperty('firstName')).toBe(false);
+        const result = RenameObjectProperty(obj, 'oldName', 'newName');
+        
+        expect(result).toEqual({ newName: undefined });
+    });
+
+    it('should not modify original object', () => {
+        const obj = { oldName: 'value' };
+        const result = RenameObjectProperty(obj, 'oldName', 'newName');
+        
+        expect(obj).toEqual({ oldName: 'value' });
+        expect(result).toEqual({ newName: 'value' });
+    });
+
+    it('should handle same old and new names', () => {
+        const obj = { name: 'value' };
+        const result = RenameObjectProperty(obj, 'name', 'name');
+        
+        expect(result).toEqual({ name: 'value' });
     });
 });

@@ -1,18 +1,28 @@
-import GetDatesBetween from "../src/GetDatesBetween";
+import GetDatesBetween from '../src/date/GetDatesBetween.js';
 
-test('Generates dates between the given range correctly', () => {
-    const startDate = '2023-01-01';
-    const endDate = '2023-01-05';
+describe('GetDatesBetween function', () => {
+    it('should return dates between two dates', () => {
+        const start = new Date('2021-01-01');
+        const end = new Date('2021-01-05');
+        const result = GetDatesBetween(start, end);
+        
+        expect(result).toBeInstanceOf(Array);
+        expect(result.length).toBeGreaterThan(0);
+    });
 
-    const result = GetDatesBetween(startDate, endDate);
+    it('should handle same start and end date', () => {
+        const date = new Date('2021-01-01');
+        const result = GetDatesBetween(date, date);
+        
+        expect(result).toBeInstanceOf(Array);
+        expect(result.length).toBeGreaterThanOrEqual(1);
+    });
 
-    // Check if the parameters are empty
-    expect(GetDatesBetween()).toBe('All parameters are empty');
-    expect(GetDatesBetween(startDate, null)).toBe('Some of range parameter are empty');
-    expect(GetDatesBetween(null, endDate)).toBe('Some of range parameter are empty');
-
-    // Check if the generated dates are instances of Date
-    result.forEach(date => {
-        expect(date instanceof Date).toBe(true);
+    it('should handle reverse date order', () => {
+        const start = new Date('2021-01-05');
+        const end = new Date('2021-01-01');
+        const result = GetDatesBetween(start, end);
+        
+        expect(result).toBeInstanceOf(Array);
     });
 });

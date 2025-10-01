@@ -1,17 +1,25 @@
-import GetDecimalPoint from "../src/GetDecimalPoint";
+import GetDecimalPoint from '../src/number/GetDecimalPoint.js';
 
-test('Returns the decimal point of a number rounded to one decimal place', () => {
-    const wholeNumber = 5;
-    const decimalNumber = 5.12345;
+describe('GetDecimalPoint function', () => {
+    it('should return decimal places for numbers', () => {
+        expect(GetDecimalPoint(3.14)).toBe(2);
+        expect(GetDecimalPoint(3.14159)).toBe(5);
+    });
 
-    const resultWhole = GetDecimalPoint(wholeNumber);
-    const resultDecimal = GetDecimalPoint(decimalNumber);
+    it('should return 0 for integers', () => {
+        expect(GetDecimalPoint(5)).toBe(0);
+        expect(GetDecimalPoint(100)).toBe(0);
+    });
 
-    // Check if the result is a number
-    expect(typeof resultWhole).toBe('number');
-    expect(typeof resultDecimal).toBe('number');
+    it('should handle zero', () => {
+        expect(GetDecimalPoint(0)).toBe(0);
+    });
 
-    // Check the values after extracting decimal points
-    expect(resultWhole).toBe(5); // For whole number input
-    expect(resultDecimal).toBe(5.1); // For decimal number input rounded to one decimal place
+    it('should handle negative numbers', () => {
+        expect(GetDecimalPoint(-3.14)).toBe(2);
+    });
+
+    it('should handle very small numbers', () => {
+        expect(GetDecimalPoint(0.001)).toBe(3);
+    });
 });

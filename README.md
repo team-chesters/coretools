@@ -1,23 +1,24 @@
-# Makeasy.js
+# CoreTools
 
-Makeasy.js is functional utility library for JavaScript, inspired by [lodash](https://github.com/lodash/lodash) and my work experience. Makeasy is pronounced [mek-ˈiːzi].
+CoreTools is a JavaScript utility library inspired by developer experience and [lodash](https://github.com/lodash/lodash). It provides a collection of commonly used utility functions that developers need in their daily work.
 
-## Why Makeasy?
+## Why CoreTools?
 * Easy Data Type Conversion
-* Reduces hassle
+* Reduces development hassle
+* Lightweight and fast
 * ~~maybe add more in future~~
 
-## Makeasy should
-* be increase reuse.
-* be clean & readable.
-* be debug.
-* be maintain.
-* be modular.
-* has unit tests for all modules.
-* work on multiple environments. (IE11+ w/ Modern Browser)
-* be compatible with other framework or library. (possible should)
+## CoreTools should
+* Increase reusability
+* Be clean & readable
+* Be easy to debug
+* Be maintainable
+* Be modular
+* Have unit tests for all modules
+* Work on multiple environments (IE11+ with Modern Browser)
+* Be compatible with other frameworks or libraries
 
-## Makeasy shouldn't be
+## CoreTools shouldn't be
 * UI Components.
 * CSS Selector Engine or simliar code.
 * Template Engine
@@ -27,22 +28,22 @@ Makeasy.js is functional utility library for JavaScript, inspired by [lodash](ht
 ## Installation
 In a browser:
 ```html
-<script src="./makeasy.umd.js"></script>
+<script src="./coretools.umd.js"></script>
 ```
 
 Using npm or yarn
 ```shell
-$ npm install makeasy 
+$ npm install coretools 
 ```
 
 In a Javascript files (ESM)
 ```js
-import { ... } from 'makeasy'
+import { ... } from 'coretools'
 ```
 
 ## Documentation
 
-Online documentation will be written on a [Github Wiki](https://github.com/team-chesters/makeasy/wiki)[^1][^2].
+Online documentation will be written on a [Github Wiki](https://github.com/team-chesters/coretools/wiki)[^1][^2].
 
 ~~Documentation is work in progress.~~
 

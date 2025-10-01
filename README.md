@@ -10,6 +10,7 @@ CoreTools is a JavaScript utility library inspired by developer experience and [
 * Lodash-style chaining API
 * Category-based organization for better developer experience
 
+
 ## CoreTools should
 * Increase reusability
 * Be clean & readable

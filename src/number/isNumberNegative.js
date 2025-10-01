@@ -1,4 +1,4 @@
-import isEmpty from '../object/isEmpty';
+import isEmpty from './isEmpty';
 import isNumber from './isNumber';
 
 /**

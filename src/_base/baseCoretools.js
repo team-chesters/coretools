@@ -3,8 +3,8 @@
  *
  * @private
  */
-function baseMakeasy() {
+function baseCoretools() {
   // No operation performed.
 }
 
-export default baseMakeasy;
+export default baseCoretools;

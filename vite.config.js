@@ -4,9 +4,9 @@ import path from 'path';
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, './makeasy.default.js'),
-      name: 'makeasy',
-      fileName: (format) => `makeasy.${format}.js`
+      entry: path.resolve(__dirname, './coretools.default.js'),
+      name: 'coretools',
+      fileName: (format) => `coretools.${format}.js`
     }
   },
   output: {

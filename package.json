@@ -1,34 +1,37 @@
 {
-  "name": "makeasy.js",
-  "description": "Javascript Library for More Easier Frontend Development.",
-  "version": "1.0.2",
+  "name": "coretools",
+  "description": "JavaScript utility library inspired by developer experience and lodash.",
+  "version": "2.0.0",
   "license": "MIT",
   "files": [
     "dist"
   ],
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/team-chesters/makeasy.git"
+    "url": "https://www.github.com/team-chesters/coretools.git"
   },
   "bugs": {
-    "url": "https://www.github.com/team-chesters/makeasy/issues",
+    "url": "https://www.github.com/team-chesters/coretools/issues",
     "email": "che5ya@naver.com"
   },
-  "homepage": "https://www.github.com/team-chesters/makeasy",
+  "homepage": "https://www.github.com/team-chesters/coretools",
   "keywords": [
     "javascript",
     "functions",
     "tools",
     "util",
-    "utility"
+    "utility",
+    "coretools",
+    "lodash",
+    "helper"
   ],
   "type": "module",
-  "main": "./dist/makeasy.umd.js",
-  "module": "./dist/makeasy.es.js",
+  "main": "./dist/coretools.umd.js",
+  "module": "./dist/coretools.es.js",
   "exports": {
     ".": {
-      "import": "./dist/makeasy.es.js",
-      "require": "./dist/makeasy.umd.js"
+      "import": "./dist/coretools.es.js",
+      "require": "./dist/coretools.umd.js"
     }
   },
   "scripts": {

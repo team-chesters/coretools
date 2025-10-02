@@ -1,5 +1,5 @@
-import isDate from "./isDate";
-import isEmpty from "./isEmpty";
+import isDate from "../date/isDate.js";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Transforms a given Date object into Unix time (seconds since Jan 1, 1970).

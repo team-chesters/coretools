@@ -29,14 +29,22 @@ CoreTools is a JavaScript utility library inspired by developer experience and [
 * Anything that isn't modular libraries.
 
 ## Installation
-In a browser:
+
+### Browser (UMD)
 ```html
-<script src="./coretools.umd.js"></script>
+<script src="./dist/coretools.umd.js"></script>
+<script>
+  // Use coretools functions
+  const result = coretools.isArray([1, 2, 3]); // true
+  const unique = coretools.GetUnique([1, 2, 2, 3]); // [1, 2, 3]
+</script>
 ```
 
-Using npm or yarn
+### NPM/Yarn
 ```shell
 $ npm install coretools 
+# or
+$ yarn add coretools
 ```
 
 ## Usage
@@ -134,13 +142,59 @@ const result = coretools(data)
     .value()
 ```
 
+### Browser UMD Usage
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoreTools UMD Example</title>
+</head>
+<body>
+    <script src="./dist/coretools.umd.js"></script>
+    <script>
+        // Direct function usage
+        console.log(coretools.isArray([1, 2, 3])); // true
+        console.log(coretools.GetUnique([1, 2, 2, 3])); // [1, 2, 3]
+        console.log(coretools.GetTomorrow()); // tomorrow's date
+        
+        // Chaining API
+        const result = coretools([1, 2, 3])
+            .isArray()
+            .value();
+        console.log(result); // [1, 2, 3]
+    </script>
+</body>
+</html>
+```
+
 ## Development
 
+### Building UMD Files
+To build UMD files for browser usage:
+
+```shell
+# Install dependencies
+npm install
+# or
+yarn install
+
+# Build UMD and ES modules
+npm run build
+# or
+yarn build
+```
+
+This will generate:
+- `dist/coretools.umd.js` - UMD format for browser usage
+- `dist/coretools.es.js` - ES module format
+
+### Features
 This is the **develop branch** of CoreTools, featuring:
 - Modular architecture with category-based organization
 - Lodash-style chaining API
 - Tree-shaking support for optimal bundle sizes
 - Comprehensive function coverage (88+ utility functions)
+- UMD support for browser environments
 
 ## Documentation
 

@@ -1,4 +1,4 @@
-import isNotInArray from "./isNotInArray";
+import isNotInArray from "./isNotInArray.js";
 
 /**
  * Checks if a key exists in the object and the value associated with the key is not present in the rest of the arguments.

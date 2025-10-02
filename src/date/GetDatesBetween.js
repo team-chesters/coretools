@@ -1,4 +1,4 @@
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Generates an array of dates between the given start and end dates (inclusive).

@@ -1,4 +1,4 @@
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Checks if a string is alphanumeric, including some special characters.

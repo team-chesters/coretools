@@ -1,5 +1,5 @@
-import isEmpty from "./isEmpty";
-import ymdToDate from "./ymdToDate";
+import isEmpty from "../object/isEmpty.js";
+import ymdToDate from "./ymdToDate.js";
 
 /**
  * Returns the end of the week for a given date.

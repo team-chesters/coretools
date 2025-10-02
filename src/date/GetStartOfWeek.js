@@ -1,5 +1,5 @@
-import isEmpty from "./isEmpty";
-import ymdToDate from "./ymdToDate";
+import isEmpty from "../object/isEmpty.js";
+import ymdToDate from "./ymdToDate.js";
 
 /**
  * Gets the start of the week based on the provided date.

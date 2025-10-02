@@ -1,5 +1,5 @@
 import { _ONE_DAY_MS } from "./const";
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Calculates the difference in days between a given timestamp and the current date.

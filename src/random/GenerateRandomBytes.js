@@ -1,5 +1,5 @@
-import isEmpty from "./isEmpty";
-import ConvertDecimalToHex from "./ConvertDecimalToHex";
+import isEmpty from "../object/isEmpty.js";
+import ConvertDecimalToHex from "../convert/ConvertDecimalToHex.js";
 
 /**
  * Generates a random string of specified length using cryptographic random values.

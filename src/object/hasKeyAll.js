@@ -1,4 +1,4 @@
-import hasKey from "./hasKey";
+import hasKey from "./hasKey.js";
 
 /**
  * Checks if all the provided keys exist in the object.

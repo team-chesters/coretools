@@ -1,5 +1,5 @@
-import isEmpty from "./isEmpty";
-import isNumber from "./isNumber";
+import isEmpty from "../object/isEmpty.js";
+import isNumber from "../number/isNumber.js";
 /**
  * Get a Date object from a timestamp in milliseconds while handling empty timestamps.
  *

@@ -1,5 +1,7 @@
 # CoreTools
 
+**English** | [한국어](README_Kor.md)
+
 CoreTools is a JavaScript utility library inspired by developer experience and [lodash](https://github.com/lodash/lodash). It provides a collection of commonly used utility functions that developers need in their daily work, organized into logical categories for better maintainability and tree-shaking support.
 
 ## Why CoreTools?
@@ -133,14 +135,64 @@ const escaped = EscapeHTML("<div>") // "&lt;div&gt;"
 ```
 
 ### Chaining API (Lodash-style)
+CoreTools provides a complete chaining API with **83 utility functions** across all categories:
+
 ```js
 import coretools from 'coretools'
 
-const result = coretools(data)
+// Basic validation chaining
+const result = coretools([1, 2, 2, 3])
     .isArray()
-    .isEmpty()
-    .value()
+    .value() // true
+
+// Array processing chain
+const unique = coretools([1, 2, 2, 3, 4, 4, 5])
+    .GetUnique()
+    .value() // [1, 2, 3, 4, 5]
+
+// String processing chain
+const padded = coretools(5)
+    .pad(3)
+    .value() // "005"
+
+// Date processing chain
+const tomorrow = coretools(new Date())
+    .GetTomorrow()
+    .value() // tomorrow's date
+
+// Complex multi-category chain
+const isValid = coretools("hello")
+    .Len()
+    .isNumber()
+    .value() // true
+
+// Object validation chain
+const hasValidData = coretools({ name: "test", age: 25 })
+    .isObject()
+    .hasKey("name")
+    .value() // true
+
+// Number formatting chain
+const formatted = coretools(1024)
+    .isNumber()
+    .FormatBytes()
+    .value() // "1.00 KB"
 ```
+
+**Available Chaining Categories:**
+- **Array** (7 functions): `isArray()`, `GetUnique()`, `isIn()`, `isInArray()`, `isNotIn()`, `isNotInArray()`, `isValidIndex()`
+- **Object** (11 functions): `isEmpty()`, `isObject()`, `hasKey()`, `hasKeyAll()`, `hasKeyIn()`, `hasKeyNonEmpty()`, `hasKeyButNotIn()`, `hasKeyNumberPositive()`, `MergeJson()`, `FilterJsonWithoutEmptyKey()`, `RenameObjectProperty()`
+- **String** (13 functions): `Len()`, `LenByte()`, `pad()`, `padZero()`, `Cut()`, `CutW()`, `EscapeHTML()`, `isAlphaNumeric()`, `isKoreanChar()`, `isCharInRange()`, `GetRepeatString()`, `MergeTagString()`, `SplitTagString()`
+- **Number** (7 functions): `isNumber()`, `isNumberPositive()`, `isNumberNegative()`, `isZero()`, `FormatBytes()`, `GetDecimalPoint()`, `isApproxEqual()`
+- **Date** (31 functions): `isDate()`, `GetTomorrow()`, `GetYesterday()`, `GetAge()`, `GetFormattedDate()`, `isSameDate()`, `SubtractMonths()`, `GetDateInt()`, `GetDateRangeToNow()`, `GetDateRangeToNowStartEnd()`, `GetDatesBetween()`, `GetDayAgo()`, `GetDayDiffBetween()`, `GetDayDiffNow()`, `GetDayEnd()`, `GetDayStart()`, `GetEndOfWeek()`, `GetLastSunday()`, `GetMonthDiff()`, `GetMonthRange()`, `GetNextMonth()`, `GetNextYearMonth()`, `GetPrevMonth()`, `GetStartOfWeek()`, `GetThisMonthRange()`, `isDateRangeSet()`, `isInDateRange()`, `isSameDateRange()`, `SubtractYears()`, `ymdhhmmToDate()`, `ymdSlotNoToDate()`, `ymdToDate()`
+- **Time** (6 functions): `hhmm2min()`, `hhmm2slotNo15min()`, `hhmm2slotNo30min()`, `hhmm2slotNoByDuration()`, `hhmmSplit()`, `slotNo2hhmm()`
+- **Timestamp** (4 functions): `isTimestamp()`, `GetUnix()`, `GetDateFromMs()`, `GetDateFromTs()`
+- **Type** (1 function): `isFunction()`
+- **Color** (1 function): `isSameColor()`
+- **Convert** (2 functions): `ConvertDecimalToHex()`, `ConvertHSLToHex()`
+- **File** (2 functions): `GetFileExtension()`, `MakePath()`
+
+**Note**: Async functions (`Sleep`, `ExecuteCallbackWithParams`) and generation functions (`GenerateGUID`, `GenerateRandomBytes`, `GenerateRandomNumberInRange`) are not included in chaining as they don't transform input values.
 
 ### Browser UMD Usage
 ```html
@@ -161,7 +213,13 @@ const result = coretools(data)
         const result = coretools([1, 2, 3])
             .isArray()
             .value();
-        console.log(result); // [1, 2, 3]
+        console.log(result); // true
+        
+        // Array processing chain
+        const unique = coretools([1, 2, 2, 3, 4, 4, 5])
+            .GetUnique()
+            .value();
+        console.log(unique); // [1, 2, 3, 4, 5]
     </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-import isNumber from "./isNumber";
-import isNumberNegative from "./isNumberNegative";
+import isNumber from "../number/isNumber.js";
+import isNumberNegative from "../number/isNumberNegative.js";
 
 /**
  * Converts a time slot number to a string in "hh:mm" format.

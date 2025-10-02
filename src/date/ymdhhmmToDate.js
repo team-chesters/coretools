@@ -1,5 +1,5 @@
-import ymdToDate from "./ymdToDate";
-import Len from "./Len";
+import ymdToDate from "./ymdToDate.js";
+import Len from "../string/Len.js";
 
 /**
  * Converts a date and time string to a JavaScript Date object.

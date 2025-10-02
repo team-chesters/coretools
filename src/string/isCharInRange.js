@@ -1,5 +1,5 @@
 import { _CHAR_RANGE_MAP } from "./const";
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Checks if a character is within specified ranges, supporting ASCII or Unicode.

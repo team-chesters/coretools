@@ -1,4 +1,4 @@
-import Len from "./Len";
+import Len from "../string/Len.js";
 
 /**
  * Checks if the given index is a valid index for the array.

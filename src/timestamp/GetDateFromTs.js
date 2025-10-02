@@ -1,5 +1,5 @@
-import isEmpty from "./isEmpty";
-import isNumber from "./isNumber";
+import isEmpty from "../object/isEmpty.js";
+import isNumber from "../number/isNumber.js";
 
 /**
  * Returns a Date Object representation of time in 00:00:00.

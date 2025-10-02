@@ -1,4 +1,4 @@
-import isNumber from "./isNumber";
+import isNumber from "../number/isNumber.js";
 
 /**
  * Checks if the input is a valid Unix timestamp.

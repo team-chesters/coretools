@@ -4,7 +4,7 @@
  * @returns {object} An object containing hours (hh) and minutes (mm).
  */
 
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 export default function hhmmSplit (t) {
     if (isEmpty(t)) return 0

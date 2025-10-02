@@ -1,4 +1,4 @@
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Returns the decimal point of a number (rounding to one decimal place).

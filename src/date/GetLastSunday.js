@@ -5,7 +5,7 @@
  * @returns {Date} Returns the date of the last Sunday before the given date.
  */
 
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 export default function GetLastSunday(d) {
     if (isEmpty(d)) return 'parameter is empty';

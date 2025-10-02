@@ -1,4 +1,4 @@
-import ymdToDate from "./ymdToDate";
+import ymdToDate from "./ymdToDate.js";
 
 /**
  * Calculates the age based on the provided date of birth in the format yyyyMMdd.

@@ -1,4 +1,4 @@
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Checks if two color strings are the same, ignoring case.

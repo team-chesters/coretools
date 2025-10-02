@@ -1,4 +1,4 @@
-import isEmpty from "./isEmpty";
+import isEmpty from "../object/isEmpty.js";
 
 /**
  * Generates a date range with a start date and an end date, where the start date is a specified number of days before the current date and the end date is the current date.

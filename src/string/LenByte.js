@@ -1,4 +1,4 @@
-import Len from "./Len";
+import Len from "./Len.js";
 
 /**
  * Calculates the byte length of a string, taking into account multi-byte characters.

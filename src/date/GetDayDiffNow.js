@@ -1,4 +1,4 @@
-import { _ONE_DAY_MS } from "./const";
+import { _ONE_DAY_MS } from "../_base/constants.js";
 import isEmpty from "../object/isEmpty.js";
 
 /**

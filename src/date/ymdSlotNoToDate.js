@@ -1,4 +1,4 @@
-import slotNo2hhmm from './slotNo2hhmm';
+import slotNo2hhmm from "../time/slotNo2hhmm.js";
 
 /**
  * Converts a date and slot number to a JavaScript Date object.

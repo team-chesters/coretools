@@ -1,4 +1,4 @@
-import { _MS_PER_DAY } from "./const";
+import { _MS_PER_DAY } from "../_base/constants.js";
 
 /**
  * Returns the date object representing tomorrow's date based on the provided date or the current date.

@@ -1,4 +1,4 @@
-import isInArray from "./isInArray.js";
+import isInArray from "../array/isInArray.js";
 
 /**
  * Checks if a key exists in an object and optionally verifies if its value matches any values in the provided array.

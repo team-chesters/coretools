@@ -1,5 +1,5 @@
 import { getTime } from 'date-fns';
-import isDateRangeSet from './isDateRangeSet';
+import isDateRangeSet from "./isDateRangeSet.js";
 
 /**
  * Checks if two date ranges are the same.

@@ -1,4 +1,4 @@
-import isEmpty from './isEmpty'
+import isEmpty from "./isEmpty.js"
 
 /**
  * Checks if a key exists in an object and if its value is not empty. Optionally, it can check nested keys for non-empty values.

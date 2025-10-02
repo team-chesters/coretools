@@ -1,4 +1,4 @@
-import GetMonthRange from './GetMonthRange';
+import GetMonthRange from "./GetMonthRange.js";
 
 /**
  * Gets the range of the current month.

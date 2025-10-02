@@ -1,5 +1,5 @@
-import { _ONE_DAY_MS } from './const';
-import isDate from './isDate';
+import { _ONE_DAY_MS } from "../_base/constants.js";
+import isDate from "./isDate.js";
 
 /**
  * Checks if two input values represent the same date.

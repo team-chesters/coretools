@@ -1,4 +1,4 @@
-import { _BYTE_UNIT } from "./const";
+import { _BYTE_UNIT } from "../_base/constants.js";
 import isNumberNegative from "./isNumberNegative.js";
 
 /**

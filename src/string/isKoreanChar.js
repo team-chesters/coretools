@@ -1,5 +1,5 @@
-import { _CHAR_RANGE_MAP } from './const';
-import isCharInRange from './isCharInRange';
+import { _CHAR_RANGE_MAP } from "../_base/constants.js";
+import isCharInRange from "./isCharInRange.js";
 
 /**
  * Checks if a character is a Korean character using Unicode ranges.

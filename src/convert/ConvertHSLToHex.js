@@ -1,5 +1,5 @@
-import isEmpty from './isEmpty';
-import isNumberNegative from './isNumberNegative';
+import isEmpty from "../object/isEmpty.js";
+import isNumberNegative from "../number/isNumberNegative.js";
 
 /**
  * Converts an HSL (Hue, Saturation, Lightness) color value to its corresponding Hexadecimal representation.

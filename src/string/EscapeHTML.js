@@ -1,4 +1,4 @@
-import { _HTML_ENTITY_MAP } from "./const";
+import { _HTML_ENTITY_MAP } from "../_base/constants.js";
 /**
  * Escapes special characters in a string to their respective HTML entities.
  * 

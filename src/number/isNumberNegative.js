@@ -1,5 +1,5 @@
-import isEmpty from './isEmpty';
-import isNumber from './isNumber';
+import isEmpty from "../object/isEmpty.js";
+import isNumber from "./isNumber.js";
 
 /**
  * Checks if a given value is a negative number.

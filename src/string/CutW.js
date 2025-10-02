@@ -1,5 +1,5 @@
-import Cut from "./Cut";
-import LenByte from "./LenByte";
+import Cut from "./Cut.js";
+import LenByte from "./LenByte.js";
 
 /**
  * This function shortens a given string to a specified length in bytes using the 'Cut' function.

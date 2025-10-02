@@ -1,4 +1,4 @@
-import { _CHAR_RANGE_MAP } from "./const";
+import { _CHAR_RANGE_MAP } from "../_base/constants.js";
 import isEmpty from "../object/isEmpty.js";
 
 /**

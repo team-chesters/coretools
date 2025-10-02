@@ -1,5 +1,5 @@
-import hasKeyAll from './hasKeyAll';
-import isDate from './isDate';
+import hasKeyAll from "../object/hasKeyAll.js";
+import isDate from "./isDate.js";
 
 /**
  * Checks if an object represents a date range with valid 'start' and 'end' dates.

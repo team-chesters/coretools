@@ -1,4 +1,4 @@
-import isDate from './isDate';
+import isDate from "./isDate.js";
 
 /**
  * Returns the date for the year and month ahead or behind the provided date.

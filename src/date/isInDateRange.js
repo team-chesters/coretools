@@ -1,7 +1,7 @@
 import { getTime } from 'date-fns';
-import isEmpty from './isEmpty';
-import isDate from './isDate';
-import isNumber from './isNumber';
+import isEmpty from "../object/isEmpty.js";
+import isDate from "./isDate.js";
+import isNumber from "../number/isNumber.js";
 
 /**
  * Checks if a date is within the specified date range.

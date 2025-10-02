@@ -1,4 +1,4 @@
-import { _MS_PER_DAY } from "./const";
+import { _MS_PER_DAY } from "../_base/constants.js";
 
 /**
  * Calculates the difference in days between two dates.

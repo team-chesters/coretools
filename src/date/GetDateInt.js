@@ -1,4 +1,4 @@
-import isDate from './isDate';
+import isDate from "./isDate.js";
 import { format } from 'date-fns';
 
 /**

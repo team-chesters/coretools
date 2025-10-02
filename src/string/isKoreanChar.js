@@ -8,7 +8,7 @@ import isCharInRange from "./isCharInRange.js";
  */
 
 const UNICODE_RANGES = [
-    { start: 0xAC00, end: 0xD7A3 } // 한글 유니코드 범위
+    { start: 0xAC00, end: 0xD7A3 } // Korean Unicode range
 ];
 
 const isKoreanChar = function (character) {
